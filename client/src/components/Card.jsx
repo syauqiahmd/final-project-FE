@@ -4,7 +4,7 @@ import ImgCard from '../assets/card.jpeg'
 
 export default function Card(){
 	return (
-		<div className="card" style={{width: "18rem"}}>
+		<div className="card">
 			<img className="card-img-top" src={ImgCard} alt="Card image cap" />
 			<div className="card-body">
 				<h5 className="card-title">Card title</h5>
