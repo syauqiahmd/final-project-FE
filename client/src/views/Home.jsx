@@ -5,14 +5,18 @@ import { Button } from 'react-bootstrap';
 
 import Slideshow from "../components/Slideshow";
 import TopProject from '../components/TopProject'
+import About from "../components/About";
+import Footer from "../components/Footer";
 
 export default function Home(){
 	return (
 		<>
             <Slideshow />
             <TopProject />
+            <About />
+            <Footer />
 
-            <Button variant="primary">Primary</Button>{' '}
+            {/* <Button variant="primary">Primary</Button>{' '}
             <Button variant="secondary">Secondary</Button>{' '}
             <Button variant="success">Success</Button>{' '}
             <Button variant="warning">Warning</Button>{' '}
@@ -31,7 +35,7 @@ export default function Home(){
                 >
                 Learn React
                 </a>
-            </header>
+            </header> */}
         </>
 	)
 }
