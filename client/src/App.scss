@@ -1,0 +1,42 @@
+nav {
+    padding: 15px 0;
+    img {
+        max-width: 150px;
+    }
+    span {
+        a {
+            margin: 0 10px;
+        }
+    }
+}
+
+#slideshow {
+    background-color: #eee;
+    h1 {
+        font-weight: bold;
+        margin-bottom: 50px;
+    }
+    p {
+        margin-bottom: 25px;
+    }
+    .row {
+        .left {
+            padding: 75px 50px;
+        }
+        .right {
+            padding: 30px;
+        }
+    }
+}
+
+#topproject {
+    padding: 60px 0;
+    .title {
+        margin-bottom: 50px;
+    }
+    .card {
+        h5 {
+            margin-bottom: 20px;
+        }
+    }
+}
