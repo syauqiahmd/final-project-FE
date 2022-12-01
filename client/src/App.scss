@@ -52,8 +52,12 @@ nav {
     img {
         max-width: 200px;
     }
-    img, span {
-        margin-bottom: 20px;
+    span {
+        margin-bottom: 5px;
         color: #fff;
+    }
+    .icon-groups * {
+        font-size: 20px;
+        margin: 0 5px;
     }
 }
