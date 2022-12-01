@@ -18,6 +18,13 @@ export default function Footer(){
 					<FontAwesomeIcon icon="fa-brands fa-linkedin" />
 				</span>
 			</div>
+			<div className="allrights">
+				<div className="d-flex justify-content-center">
+					<h6>
+						2022 All rights Reserved
+					</h6>
+				</div>
+			</div>
 		</footer>
 	)
 }
