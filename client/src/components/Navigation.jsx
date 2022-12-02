@@ -11,7 +11,6 @@ export default function Navigation(){
 		e.preventDefault()
 		if(collpase === 'collapse'){
 			setCollapse('')
-
 		} else {
 			setCollapse('collapse')
 		}
@@ -51,7 +50,7 @@ export default function Navigation(){
 				<span className="navbar-toggler-icon"></span>
 			</a>
 			
-			<span className={collpase + " navbar-collapse"} id="navbarNavAltMarkup">
+			<span className={collpase + " border-group navbar-collapse"} id="navbarNavAltMarkup">
 				<a href="/" className="nav-item nav-link">Home</a>
 				<a href="/" className="nav-item nav-link">Project</a>
 				<a href="#about" className="nav-item nav-link">About</a>
