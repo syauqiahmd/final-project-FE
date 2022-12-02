@@ -1,12 +1,19 @@
-nav {
-    padding: 15px 0;
+.navbar {
+    .navbar-collapse {
+        flex-grow: 0;
+    }
+    padding: 15px;
     img {
         max-width: 150px;
     }
     span {
         a {
-            margin: 0 10px;
+            margin: 10px;
+            // text-align: center;
         }
+    }
+    a:hover {
+        color: orangered
     }
 }
 
@@ -21,7 +28,7 @@ nav {
     }
     .row {
         .left {
-            padding: 75px 50px;
+            padding: 75px 50px 20px;
         }
         .right {
             padding: 30px;
@@ -30,7 +37,7 @@ nav {
 }
 
 #topproject {
-    padding: 60px 0;
+    padding: 60px 0 20px;
     .title {
         margin-bottom: 50px;
     }

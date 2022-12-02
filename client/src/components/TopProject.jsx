@@ -7,6 +7,7 @@ import Card from "./Card"
 export default function TopProject(){
 	return (
 		<div id="topproject">
+			<div className="container">
 			<div className="row">
 				<div className="d-flex flex-column align-items-center title col-lg-12 col-md-6 col-12">
 					<h3>Top Project</h3>
@@ -27,6 +28,7 @@ export default function TopProject(){
 					</div>
 
 				</div>
+			</div>
 			</div>
 		</div>
 	)
