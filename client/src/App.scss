@@ -1,3 +1,26 @@
+.btn-primary {
+    background-color: #ff8888;
+    border: none;
+    
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus{
+    background-color: #ff3333;
+}
+
+.icon-round {
+    background-color: #ff8888;
+    border-radius: 100%;
+    font-size: 20px;
+    padding: 10px;
+    color: #fff;
+    margin: 0 10px;
+}
+
+.icon-round:hover {
+    background-color: #ff3333;
+}
+
 .navbar {
     .navbar-collapse {
         flex-grow: 0;
@@ -77,4 +100,9 @@
         padding: 10px 0;
 
     }
+}
+
+#project {
+    background-color: #eee;
+    padding: 20px 0 40px;
 }
