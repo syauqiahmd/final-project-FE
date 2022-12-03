@@ -1,5 +1,4 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
 // import {} from '../store/actions/actionCreator'
 
@@ -11,7 +10,7 @@ export default function Home() {
   return (
     <>
       <Slideshow />
-      <TopProject />
+      <TopProject/>
       <About />
     </>
   );
