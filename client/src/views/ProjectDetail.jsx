@@ -1,15 +1,17 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import Step from "../components/Step"
+import Introduction from '../components/Introduction'
 
 export default function ProjectDetail(){
 	return (
 		<div id="project-detail">
 			<div className="container">
 				<div id="title">
-					<h2>Project Title</h2>
+					<h1>Project Title</h1>
 					<h5>Written By: Anonim</h5>
 				</div>
+				<Introduction />
 				<Step />
 				<Step />
 
