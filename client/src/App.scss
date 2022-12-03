@@ -124,10 +124,13 @@
 
 #introduction {
     margin: 40px 0;
+    .btn {
+        font-size: 20px;
+    }
     .infobox {
-        font-size: 20px 50px;
-        background-color: #aaa;
-        padding: 20px;
+        font-size: 20px;
+        background-color: #D9D9D9;
+        padding: 20px 30px;
         border-radius: 10px;
     }
     h3 {
