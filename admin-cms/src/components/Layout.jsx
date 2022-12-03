@@ -6,7 +6,7 @@ export default function Layout() {
     <>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-auto min-vh-100 sidebar">
+          <div className="col-auto min-vh-100 w-25 sidebar">
             <Sidebar />
           </div>
           <div className="col">

@@ -25,11 +25,11 @@ export default function Register() {
       <div className="d-flex justify-content-center align-items-center">
         <Form className="rounded p-4 p-sm-3">
         <Row className="mb-3">
-          <h3>Register</h3>
+          <h1 className="display-6">Register</h1>
         </Row>
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridFN">
-              <Form.Label className="text-left">Full Name</Form.Label>
+              <Form.Label className="text-start">Full Name</Form.Label>
               <Form.Control placeholder="Enter Full Name" />
             </Form.Group>
           </Row>
