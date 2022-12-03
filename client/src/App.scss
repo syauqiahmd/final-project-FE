@@ -102,7 +102,21 @@
     }
 }
 
-#project {
+#project, #project-detail {
     background-color: #eee;
     padding: 20px 0 40px;
+}
+
+#project-detail {
+    #title{
+        text-align: center;
+        padding: 20px 0;
+    }
+}
+
+.step {
+    margin: 80px 0;
+    img {
+        max-width: 100%;
+    }
 }

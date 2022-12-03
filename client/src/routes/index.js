@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from '../components/Layout';
 import Home from '../views/Home'
-import Project from '../views/Project'
+import Projects from '../views/Projects'
+import ProjectDetail from '../views/ProjectDetail'
 
 const router = createBrowserRouter([
   {
@@ -13,8 +14,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/projects",
-        element: <Project />,
+        element: <Projects />,
       },
+      {
+        path: '/project/:id',
+        element: <ProjectDetail />
+      }
     ]
   },
 ]);
