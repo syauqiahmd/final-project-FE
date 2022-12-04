@@ -1,7 +1,7 @@
 .btn-primary {
     background-color: #ff8888;
     border: none;
-    
+    font-size: 20px;
 }
 
 .btn-primary:hover, .btn-primary:active {
@@ -145,7 +145,7 @@
 }
 
 #comments {
-    .comment-box {
+    .comment-box, .comment-detail {
         background-color: #fff;
     }
     textarea {

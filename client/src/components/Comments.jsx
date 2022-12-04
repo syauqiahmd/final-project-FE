@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
+import CommentDetail from "./CommentDetail"
 
 export default function Comments(){
 	return (
-		<div>
+		<div style={{marginTop: '100px'}}>
 			<div id="comments">
-				<div className="">
+				<div className="mb-5">
 					<div className="p-3 comment-box mb-3">
 						<textarea className="p-3" placeholder="Write your comment....">
 
@@ -17,6 +18,13 @@ export default function Comments(){
 						</button>
 					</div>
 				</div>
+				<CommentDetail />
+				<CommentDetail />
+				<CommentDetail />
+				<CommentDetail />
+				<CommentDetail />
+				<CommentDetail />
+				<CommentDetail />
 			</div>
 		</div>
 	)
