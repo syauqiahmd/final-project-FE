@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import Step from "../components/Step"
 import Introduction from '../components/Introduction'
+import Comments from "../components/Comments"
 
 export default function ProjectDetail(){
 	return (
@@ -14,6 +15,7 @@ export default function ProjectDetail(){
 				<Introduction />
 				<Step />
 				<Step />
+				<Comments />
 
 			</div>
 

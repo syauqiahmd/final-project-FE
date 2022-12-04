@@ -10,7 +10,7 @@ export default function Introduction(){
 				<div className="col-lg-8 col-sm-6 col-12 mb-4">
 					<img src={ImgContoh} />
 				</div>
-				<div className="col-lg-4 col-sm-6 col-12 mb-5">
+				<div className="col-lg-4 col-sm-6 col-12 mb-5 d-flex flex-column justify-content-center">
 					<div className="d-flex justify-content-between infobox mb-3">
 						<span>Difficult</span>
 						<span>1/5</span>
