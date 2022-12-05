@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+const baseUrl = "http://localhost:4000";
 
 const initialState = {
   projects: [],
@@ -9,13 +11,25 @@ const projectSlice = createSlice({
   name: "project",
   initialState,
   reducers: {
-    fecthProject: (state, { payload }) => {
-      //fetching data axios
-      // state.projects = data from axios
+    fecthProject: async (state, { payload }) => {
+      try {
+        //fetching data axios
+        const { data } = axios.get(`${baseUrl}/Projects`);
+        // state.projects = data from axios
+        state.projects = data;
+      } catch (err) {
+        console.log(err);
+      }
     },
     fetchProjectById: (state, { payload }) => {
-      //fetching data axios
-      // state.project = data from axios
+      try {
+        //fetching data axios
+        const { data } = axios.get(`${baseUrl}/Projects/${payload.id}`);
+        // state.projects = data from axios
+        state.project = data;
+      } catch (err) {
+        console.log(err);
+      }
     },
     resetProjectById: (state) => {
       state.project = {};

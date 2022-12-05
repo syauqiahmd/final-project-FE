@@ -21,7 +21,7 @@ export default function Sidebar() {
               </Link>
             </li>
             <li className="mb-2">
-              <Link to={"/register"} className="sidebar-link">
+              <Link to={"/report"} className="sidebar-link">
                 Reports
               </Link>
             </li>
