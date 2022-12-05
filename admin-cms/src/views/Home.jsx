@@ -11,33 +11,40 @@ export default function Home() {
   const [tableState, setTableState] = useState("project");
 
   const { projects } = useSelector((state) => {
-    return state.project.projects;
+    return state.project;
   });
 
   const { tags } = useSelector((state) => {
-    return state.tag.tags;
+    return state.tag;
   });
 
   useEffect(() => {
     dispatch(fetchProjects());
     dispatch(fetchTags());
-    console.log(projects, tags);
-  }, []);
+    // console.log(projects, "<<<<<<<<effect");
+  }, [projects[0]?.id]);
+
+  useEffect(() => {
+    dispatch(fetchTags());
+    // console.log(tags, "<<<<<<<<effect");
+  }, [tags[0]?.id]);
 
   return (
     <>
       <Row className="mb-3 mt-3">
         <Col>
-          <Cards title="Projects" total="23" setTableState={setTableState} />
+          <Cards title="Projects" total={projects.length} setTableState={setTableState} />
         </Col>
         <Col>
-          <Cards title="Tags" total="5" setTableState={setTableState} />
+          <Cards title="Tags" total={tags.length} setTableState={setTableState} />
         </Col>
       </Row>
       <Row>
-        <p>{tableState}</p> 
-        {/* ^^^^test, don't forget to remove^^^^ */}
-        {tableState === "project" ? <Tables data={projects}/> : <Tables data={tags}/>  }
+        {tableState === "project" ? (
+          <Tables data={projects} title="Projects"/>
+        ) : (
+          <Tables data={tags} title="Tags"/>
+        )}
       </Row>
     </>
   );

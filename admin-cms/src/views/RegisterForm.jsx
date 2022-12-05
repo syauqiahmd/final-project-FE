@@ -26,16 +26,17 @@ export default function Register() {
   const submitReg = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:4000/Users", {
+      await axios.post("http://localhost:4000/Users", {
         username: formUser.username,
         fullname: formUser.fullname,
         email: formUser.email,
         password: formUser.password,
       });
-      console.log(data);
+      //sweetalert atau toasty disini untuk sukse
       navigate("/");
     } catch (err) {
       console.log(err);
+      //handle error ambil dari login
     }
   };
 

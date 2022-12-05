@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row, Alert } from "react-bootstrap";
 import { instance } from "../bin/axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const [error, setError] = useState("");
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
@@ -24,15 +26,30 @@ export default function Login() {
   const submitLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await instance.post("/Users", {
+      const { data } = await instance.get(`/Users?email=${formLogin.email}`, {
         email: formLogin.email,
         password: formLogin.password,
       });
       console.log(data);
+      // throw { message: "Error!!" };
       localStorage.setItem("access_token", data.access_token);
       navigate("/");
     } catch (err) {
-      console.log(err);
+      setShow(true);
+      //handle error setState error
+      setError(err.message)
+    }
+  };
+
+  const showAlert = () => {
+    if (show) {
+      return (
+        //width di atur, ini handle error
+        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>You got an error!</Alert.Heading>
+          <p>{error}</p>
+        </Alert>
+      );
     }
   };
 
@@ -47,6 +64,7 @@ export default function Login() {
           />
         </Row>
         <Form className="rounded p-4 p-sm-3">
+          <Row>{showAlert()}</Row>
           <Row className="mb-3">
             <h1 className="display-6">Login</h1>
           </Row>
