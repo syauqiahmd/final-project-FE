@@ -1,8 +1,23 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import CommentDetail from "./CommentDetail"
+import { fetchComments } from "../store/slices/comment";
+import { useEffect } from 'react'
 
-export default function Comments(){
+export default function Comments({id}){
+	const { comments, loadingComment } = useSelector((state) => {
+		return state.comment;
+	});
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchComments({ projectid: id }));
+		// console.log(project);
+		// console.log(comments, '<----comments');
+	}, []);
+
+	console.log(comments);
+
 	return (
 		<div style={{marginTop: '100px'}}>
 			<div id="comments">
@@ -18,13 +33,18 @@ export default function Comments(){
 						</button>
 					</div>
 				</div>
+				{comments.map((data, index) => {
+					return (
+						<CommentDetail key={index} comment={data.comment} />
+					)
+				})}
+				{/* <CommentDetail />
 				<CommentDetail />
 				<CommentDetail />
 				<CommentDetail />
 				<CommentDetail />
 				<CommentDetail />
-				<CommentDetail />
-				<CommentDetail />
+				<CommentDetail /> */}
 			</div>
 		</div>
 	)

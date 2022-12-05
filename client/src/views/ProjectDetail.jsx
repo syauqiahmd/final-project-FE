@@ -21,7 +21,6 @@ export default function ProjectDetail(){
 
 	}, [dispatch, project.id]);
 
-
 	return (
 		<div id="project-detail">
 			<Helmet>
@@ -35,7 +34,7 @@ export default function ProjectDetail(){
 				<Introduction difficulty={project.difficulty} introduction={project.introduction} imgUrl={project.imgUrl} />
 				<Step />
 				<Step />
-				<Comments />
+				<Comments id={id}/>
 
 			</div>
 		</div>
