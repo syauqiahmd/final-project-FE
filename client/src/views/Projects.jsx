@@ -14,7 +14,7 @@ export default function Project(){
 			</Helmet>
 			<div className="container">
 				<div className="d-flex justify-content-end mt-4">
-					<Link className="btn btn-primary">
+					<Link to="/new-project" className="btn btn-primary">
 						Add Project
 					</Link>
 				</div>
