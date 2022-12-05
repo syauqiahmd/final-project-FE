@@ -1,3 +1,26 @@
+.btn-primary {
+    background-color: #ff8888;
+    border: none;
+    font-size: 20px;
+}
+
+.btn-primary:hover, .btn-primary:active {
+    background-color: #ff3333;
+}
+
+.icon-round {
+    background-color: #ff8888;
+    border-radius: 100%;
+    font-size: 20px;
+    padding: 10px;
+    color: #fff;
+    margin: 0 10px;
+}
+
+.icon-round:hover {
+    background-color: #ff3333;
+}
+
 .navbar {
     .navbar-collapse {
         flex-grow: 0;
@@ -77,4 +100,56 @@
         padding: 10px 0;
 
     }
+}
+
+#project, #project-detail {
+    background-color: #eee;
+    padding: 20px 0 40px;
+}
+
+#project-detail {
+    #title{
+        text-align: center;
+        padding: 20px 0;
+    }
+}
+
+.step {
+    margin-bottom: 40px;
+    font-size: 20px;
+    img {
+        max-width: 100%;
+    }
+}
+
+#introduction {
+    margin: 40px 0;
+    .btn {
+        font-size: 20px;
+    }
+    .infobox {
+        font-size: 20px;
+        background-color: #D9D9D9;
+        padding: 20px 30px;
+        border-radius: 10px;
+    }
+    h3 {
+        font-weight: bold;
+    }
+    p {
+        font-size: 17px;
+    }
+    img {
+        max-width: 100%;
+    }
+}
+
+#comments {
+    .comment-box, .comment-detail {
+        background-color: #fff;
+    }
+    textarea {
+        width: 100%;
+    }
+    
 }
