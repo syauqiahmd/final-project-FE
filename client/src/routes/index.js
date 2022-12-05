@@ -3,6 +3,7 @@ import Layout from '../components/Layout';
 import Home from '../views/Home'
 import Projects from '../views/Projects'
 import ProjectDetail from '../views/ProjectDetail'
+import Login from '../views/Login'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: '/login',
+    element: <Login />
+  }
 ]);
 
 export default router;
