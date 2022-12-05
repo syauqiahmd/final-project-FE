@@ -8,11 +8,12 @@ import Report from "../views/Report";
 const router = createBrowserRouter([
   {
     element: <Layout />,
-    // loader: () => {
-    //   if (!localStorage.getItem("access_token")) {
-    //     return redirect("/login");
-    //   }
-    // },
+    loader: () => {
+      if (!localStorage.getItem("access_token")) {
+        return redirect("/login");
+      }
+      return null;
+    },
     children: [
       {
         path: "/",
@@ -26,16 +27,17 @@ const router = createBrowserRouter([
         path: "/report",
         element: <Report />,
       },
-    ]
+    ],
   },
   {
     path: "/login",
     element: <Login />,
-    // loader: () => {
-    //   if (localStorage.getItem("access_token")) {
-    //     return redirect("/");
-    //   }
-    // },
+    loader: () => {
+      if (localStorage.getItem("access_token")) {
+        return redirect("/");
+      }
+      return null;
+    },
   },
 ]);
 

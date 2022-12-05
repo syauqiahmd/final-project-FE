@@ -1,10 +1,12 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { Row, Col } from "react-bootstrap";
 import Cards from "../components/Card";
 import Tables from "../components/Table";
 
 export default function Home() {
-  const state = [tableState,setTableState];
+  const [tableState,setTableState] = useState("projects");
+  
   return (
     <>
       <Row className="mb-3 mt-3">
