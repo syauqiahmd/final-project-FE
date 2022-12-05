@@ -36,6 +36,7 @@ const Login = () => {
       <main className="col-md-4 col-10 form-signin w-50s m-auto mt-5">
         <form onSubmit={submitLogin}>
           <Link to="/"><img className="mb-4" src={logo} height="35" /></Link>
+          <Link to="/"><h6 className='mb-4'>Back to Home</h6></Link>
           <h3 className="h3 mb-3 fw-normal">Please sign in</h3>
           <div className="form-floating">
             <input type="email" className="form-control" 

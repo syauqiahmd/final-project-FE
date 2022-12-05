@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useState } from "react"
 import { Helmet } from "react-helmet"
 import AddStep from "../components/AddStep"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function NewProject(){
 	const [steps, setStep] = useState([{}])
@@ -62,7 +63,13 @@ export default function NewProject(){
 										<AddStep key={index} />
 										{
 											steps.length > 1
-											? <button className="btn btn-danger" name={index} onClick={removeStep}>Delete Step</button>
+											? <button className="btn btn-danger" name={index}
+												onClick={
+													() => {
+														setStep(steps.filter((_, i) => i !== index));
+													}
+												}
+												><FontAwesomeIcon icon="fa-solid fa-trash-can" /></button>
 											: null
 										}
 									</div>
