@@ -8,7 +8,6 @@ import Card from "../components/Card"
 import { Helmet } from "react-helmet"
 
 export default function Project(){
-	let dummy = [1, 2, 3, 4, 5, 6, 7, 8]
 	const { projects, loadingProjects } = useSelector((state) => {
 		return state.project;
 	});
@@ -16,7 +15,6 @@ export default function Project(){
 
 	useEffect(() => {
 		dispatch(fetchProjects());
-		// console.log(projects);
 	}, []);
 
 	// console.log(projects);
@@ -37,7 +35,7 @@ export default function Project(){
 						projects.map((data, index) => {
 							return (
 								<div className="col-lg-3 col-md-6 col-sm-6 col-12" key={index}>
-									<Card title={data.title} slug={data.slug} />
+									<Card title={data.title} slug={data.id} imgUrl={data.imgUrl} />
 								</div>
 							)
 						})
