@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import axios from "axios";
+import { instance } from "../bin/axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -24,7 +24,7 @@ export default function Login() {
   const submitLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:4000/Users", {
+      const { data } = await instance.post("/Users", {
         email: formLogin.email,
         password: formLogin.password,
       });
@@ -35,7 +35,7 @@ export default function Login() {
       console.log(err);
     }
   };
-  
+
   return (
     <>
       <div className="d-flex justify-content-center align-items-center">

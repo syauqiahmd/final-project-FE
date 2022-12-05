@@ -1,44 +1,39 @@
-import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
-const baseUrl = "http://localhost:4000";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { instance } from "../../bin/axios";
 
-const initialState = {
-  projects: [],
-  project: {},
-};
+export const fetchProjects = createAsyncThunk(
+  "projects/fetchSucces",
+  async () => {
+    const { data } = await instance.get("/Projects");
+    return data;
+  }
+);
+
+export const fetchProjectById = createAsyncThunk(
+  "projectById/fetchSucces",
+  async ({ id }) => {
+    const { data } = await instance.get(`/Projects/${id}`);
+    return data;
+  }
+);
 
 const projectSlice = createSlice({
   name: "project",
-  initialState,
-  reducers: {
-    fecthProject: async (state, { payload }) => {
-      try {
-        //fetching data axios
-        const { data } = axios.get(`${baseUrl}/Projects`);
-        // state.projects = data from axios
-        state.projects = data;
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    fetchProjectById: (state, { payload }) => {
-      try {
-        //fetching data axios
-        const { data } = axios.get(`${baseUrl}/Projects/${payload.id}`);
-        // state.projects = data from axios
-        state.project = data;
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    resetProjectById: (state) => {
-      state.project = {};
-    },
+  initialState: {
+    projects: [],
+    project: {},
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchProjects.fulfilled, (state, action) => {
+      state.projects = action.payload;
+    });
+
+    builder.addCase(fetchProjectById.fulfilled, (state, action) => {
+      state.project = action.payload;
+    });
   },
 });
 
-export const { fecthProject, fetchProjectById, resetProjectById } =
-  projectSlice.actions;
 export default projectSlice.reducer;
 
 // cara menggunakan di bagian component atau view
