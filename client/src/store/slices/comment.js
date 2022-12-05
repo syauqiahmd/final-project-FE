@@ -4,7 +4,6 @@ import { instance } from "../../bin/axios";
 export const fetchComments = createAsyncThunk(
   "comments/fetchSucces",
   async ({ projectid }) => {
-    console.log(projectid);
     const { data } = await instance.get(`/Comments?ProjectId=${projectid}`);
     return data;
   }

@@ -12,11 +12,7 @@ export default function Comments({id}){
 
 	useEffect(() => {
 		dispatch(fetchComments({ projectid: id }));
-		// console.log(project);
-		// console.log(comments, '<----comments');
 	}, []);
-
-	console.log(comments);
 
 	return (
 		<div style={{marginTop: '100px'}}>
