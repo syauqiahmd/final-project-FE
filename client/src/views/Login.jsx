@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './login.scss';
 import logo from "../assets/logo.png";
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate()
@@ -32,14 +33,14 @@ const Login = () => {
 
   return (
     <div className='row text-center'>
-      <main className="col-md-4 form-signin w-50s m-auto mt-5">
+      <main className="col-md-4 col-10 form-signin w-50s m-auto mt-5">
         <form onSubmit={submitLogin}>
-          <img className="mb-4" src={logo} height="35" />
-          <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+          <Link to="/"><img className="mb-4" src={logo} height="35" /></Link>
+          <h3 className="h3 mb-3 fw-normal">Please sign in</h3>
           <div className="form-floating">
             <input type="email" className="form-control" 
             name='email' 
-            id="floatingInput" 
+            id="floatingInput"
             placeholder="name@example.com" 
             value={formLogin.email}
             onChange={emailHandler}

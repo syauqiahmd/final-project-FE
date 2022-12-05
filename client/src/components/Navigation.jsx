@@ -31,8 +31,8 @@ export default function Navigation(){
 				<a href="/#about" className="nav-item nav-link">About</a>
 			</span>
 			<span className={collpase + " navbar-collapse text-center"} id="navbarNavAltMarkup">
-				<a className="btn btn-outline-dark">Register</a>
-				<a className="btn btn-outline-dark">Login</a>
+				<Link to="/" className="btn btn-outline-dark">Register</Link>
+				<Link to="/login" className="btn btn-outline-dark">Login</Link>
 			</span>
 		</nav>
 	)
