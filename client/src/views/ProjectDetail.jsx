@@ -22,7 +22,6 @@ export default function ProjectDetail(){
 				<Comments />
 
 			</div>
-
 		</div>
 	)
 }
