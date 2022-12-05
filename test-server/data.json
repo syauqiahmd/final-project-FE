@@ -1,0 +1,210 @@
+{
+  "Users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "fullname": "admin fullname",
+      "role": "Admin",
+      "email": "admin@mail.com",
+      "password": "12345"
+    },
+    {
+      "id": 2,
+      "username": "user",
+      "fullname": "user fullname",
+      "role": "User",
+      "email": "user@mail.com",
+      "password": "12345"
+    },
+    {
+      "id": 3,
+      "username": "user2",
+      "fullname": "user 2 fullname",
+      "role": "User",
+      "email": "user2@mail.com",
+      "password": "12345"
+    }
+  ],
+  "Tags": [
+    {
+      "id": 1,
+      "name": "application"
+    },
+    {
+      "id": 2,
+      "name": "eletronic"
+    },
+    {
+      "id": 3,
+      "name": "furniture"
+    },
+    {
+      "id": 4,
+      "name": "tools"
+    }
+  ],
+  "Projects": [
+    {
+      "id": 1,
+      "UserId": 2,
+      "title": "How to Patch a Tear in Vinyl Furniture",
+      "slug": "How+to+Patch+a+Tear+in+Vinyl+Furniture",
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/YeTWVlSHJowO1PG1.medium",
+      "introduction": "Repairing a rip in vinyl furniture is a short, simple, and low-cost fit that can be accomplished in the home. Vinyl furniture can rip for a number of reasons, such as a sharp object or a pet scratching the material. It is best to repair a tear as soon as possible to avoid the tear becoming larger.",
+      "difficulty": "5",
+      "TagId": 2
+    },
+    {
+      "id": 2,
+      "UserId": 2,
+      "title": "Assembly of the Free Wheelchair Mission GEN 1",
+      "slug": "Assembly+of+the+Free+Wheelchair+Mission+GEN+1",
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/svRm1lMCfHrn1g5a.medium",
+      "introduction": "This guide will walk you through all the steps to correctly assemble the Free Wheelchair Mission GEN 1 wheelchair. But first, familiarize yourself with tools you will be using with the Free Wheelchair Mission Tools Maintenance Guide.",
+      "difficulty": "2",
+      "TagId": 1
+    },
+    {
+      "id": 3,
+      "UserId": 2,
+      "title": "ProfiMixx 44 Disassembly",
+      "slug": "ProfiMixx+44+Disassembly",
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/svRm1lMCfHrn1g5a.medium",
+      "introduction": "In case of broken lugs or screw holders, the two housing parts can be glued together. It is important to check that you have assembled everything correctly before gluing.",
+      "difficulty": "3",
+      "TagId": 3
+    }
+  ],
+  "Steps": [
+    {
+      "id": 1,
+      "ProjectId": "3",
+      "name": "Removing the scrapers",
+      "description": ["Removing the five (TR15) scrapers"],
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/jv1LnAQp5GMHmsX1.medium"
+    },
+    {
+      "id": 2,
+      "ProjectId": "3",
+      "name": "Removing the housing",
+      "description": [
+        "Removing the first part of the housing",
+        "Removing the rotary wheel, important pay attention to the black component so that the nose in does not break off (green mark).",
+        "Removing the second part of the housing." 
+      ],
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/wc3hMveQVAHVpsRL.medium"
+    },
+    {
+      "id": 3,
+      "ProjectId": "3",
+      "name": "Assembly of the housing I" ,
+      "description": [
+        "Make sure that the green marked elements are in the right place in both housings, the red element is only available once.",
+        "Make sure that the two strands run as marked in blue.",
+        "The white element must be in the rear position. (marked in orange)."
+      ],
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/v5EMIcQI3GGTEqY2.medium"
+    },
+    {
+      "id": 4,
+      "ProjectId": "3",
+      "name": "Assembly of the housing II",
+      "description": [
+        "Lift the motor-gearbox-unit a little bit upwards so that you can insert the black element with the nose into the hole of the white element. (marked in green)",
+        "Insert the nose of the black element into the hole of the rotary switch, making sure it is oriented as shown.",
+        "Gently move the rotary switch so that it fits into the slot in the housing. (marked in blue).",
+        "Then you can tighten the upper housing part with the five screws (TR15)."
+      ],
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/qioL25X36LQDhcxk.medium"
+    },
+    {
+      "id": 5,
+      "ProjectId": "1",
+      "name": "How to Patch a Tear in Vinyl Furniture",
+      "description": [
+        "Clean the damaged area with rubbing alcohol, using a rag, paper towel, or Q-tip."
+      ],
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/YeTWVlSHJowO1PG1.medium"
+    },
+    {
+      "id": 6,
+      "ProjectId": "1",
+      "name": "",
+      "description": [
+        "Cut the backing fabric large enough to cover the tear, approximately half an inch larger around the tear."
+      ],
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/JKAIHrYsTcHW4svY.medium"
+    },
+    {
+      "id": 7,
+      "ProjectId": "1",
+      "name": "",
+      "description": [
+        "Use the spatula tool to insert the backing fabric underneath the tear."
+      ],
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/tWtqDEKBpB1Mulnt.medium"
+    },
+    {
+      "id": 8,
+      "ProjectId": "1",
+      "name": "",
+      "description": [
+        "Use the spatula to apply the adhesive to the damaged area.",
+        "Choose a color that matches your furniture. You may need to mix colors to acheive the correct shade.Choose a color that matches your furniture. You may need to mix colors to acheive the correct shade."
+      ],
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/b43iSvoLy5NHsoSV.medium"
+    },
+    {
+      "id": 9,
+      "ProjectId": "1",
+      "name": "",
+      "description": [
+        "Let the adhesive dry for approximately four hours.",
+        "You may use a hair dryer to speed up the drying process."
+      ],
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/FrRHDWkOCS6PNKkg.medium"
+    },
+    {
+      "id": 10,
+      "ProjectId": "1",
+      "name": "",
+      "description": [
+        "Use a Q-tip dipped in rubbing alcohol to buff and blend the area.",
+        "Apply light pressure to even out the edges."
+      ],
+      "imgUrl": "https://guide-images.cdn.ifixit.com/igi/DDJ5leKGwNNLIphv.medium"
+    }
+  ],
+  "Comments": [
+    {
+      "id": 1,
+      "ProjectId": 1,
+      "UserId": 2,
+      "comment": "ini gimna ya cara buatanya"
+    },
+    {
+      "id": 2,
+      "ProjectId": 1,
+      "UserId": 3,
+      "comment": "pakai alat yang tersedia aja"
+    },
+    {
+      "id": 3,
+      "ProjectId": 1,
+      "UserId": 2,
+      "comment": "alatanya darimana ?"
+    },
+    {
+      "id": 4,
+      "ProjectId": 1,
+      "UserId": 2,
+      "comment": "di warung banyak gan"
+    },
+    {
+      "id": 5,
+      "ProjectId": 1,
+      "UserId": 2,
+      "comment": "terima kasih"
+    }
+  ]
+}
