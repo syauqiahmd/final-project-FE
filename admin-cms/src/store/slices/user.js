@@ -11,10 +11,10 @@ const userSlice = createSlice({
       try {
         // sent pay load to axios
 
-        // const { data } = await axios.post(
-        //   "http://localhost:4000/users/login",
-        //   payload
-        // );
+        const { data } = await axios.post(
+          "http://localhost:4000/users/login",
+          payload
+        );
 
         // handle success axios
       } catch (err) {
