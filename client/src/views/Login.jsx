@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux'
 import './login.scss';
 import logo from "../assets/logo.png";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { postLogin } from "../store/slices/user";
 
 const Login = () => {
-  const navigate = useNavigate()
+  const { user, loadingUser } = useSelector((state) => {
+		return state.user;
+	});
+	const dispatch = useDispatch();
+  // useEffect(() => {
+	// 	dispatch(postUser({ projectid: id }));
+	// }, []);
   const [formLogin, setFormLogin] = useState({
     email: '',
     password: ''
@@ -26,10 +34,14 @@ const Login = () => {
 
   const submitLogin = (e) => {
     e.preventDefault()
-    console.log(formLogin)
-    // localStorage.setItem('access_token', data.access_token)
+    // console.log(formLogin)
+    dispatch(postLogin({ form: formLogin }))
+    console.log(user);
+    // console.log(getdata);
+    if(loadingUser){
+      localStorage.setItem('access_token', data.access_token)
+    }
   }
-
 
   return (
     <div className='row text-center'>

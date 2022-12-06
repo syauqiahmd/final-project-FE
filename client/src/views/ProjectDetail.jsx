@@ -22,11 +22,7 @@ export default function ProjectDetail(){
 	useEffect(() => {
 		dispatch(fetchProjectById({ id: id }));
 		dispatch(fetchSteps({ projectid: id }));
-		// console.log(project);
-
 	}, []);
-
-	console.log(steps);
 
 	return (
 		<div id="project-detail">
