@@ -1,3 +1,7 @@
+.btn-danger {
+    color: #fff !important;
+}
+
 .btn-primary {
     background-color: #ff8888;
     border: none;
@@ -150,6 +154,38 @@
     }
     textarea {
         width: 100%;
+    }   
+}
+
+#new-project {
+    #title{
+        text-align: center;
+        padding: 20px 0;
     }
-    
+    .form {
+        .input-form {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            label {
+                width: 200px;
+                margin-right: 10px;
+            }
+        }
+        .input-form2 {
+            font-size: 20px;
+            display: flex;
+            margin-bottom: 20px;
+            label {
+                width: 200px;
+                margin-right: 10px;
+            }
+        }
+        .add-step {
+            background-color: #D9D9D9;
+            padding: 20px;
+            width: 100%;
+        }
+    }
 }
