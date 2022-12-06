@@ -44,7 +44,7 @@ form {
 .logo-dithub {
   width: 300px !important;
 }
-.sidebar {
+/* .sidebar {
   background-color: rgb(0, 0, 26);
 }
 
@@ -63,7 +63,7 @@ ul li a:hover {
   cursor: pointer;
   color: rgb(249, 145, 94);
   text-decoration: none;
-}
+} */
 
 .form-label {
   float: left;

@@ -1,4 +1,4 @@
-import { Table } from "react-bootstrap";
+import { Table, Card } from "react-bootstrap";
 import TableBodyProjects from "./TableBodyProjects"
 import TableBodyTags from "./TableBodyTags"
 
@@ -34,8 +34,9 @@ export default function Tables(props) {
 
   return (
     <>
-      <div>
-        <Table striped bordered hover>
+      <Card.Header as="h4" className="text-center">{props.title} List</Card.Header>
+      <Card.Body>
+      <Table responsive hover>
           <thead>
             {props.title ==="Projects" ? tableHeadProjects() : tableHeadTags()}
           </thead>
@@ -45,7 +46,7 @@ export default function Tables(props) {
             })}
           </tbody>
         </Table>
-      </div>
+      </Card.Body>
     </>
   );
 }

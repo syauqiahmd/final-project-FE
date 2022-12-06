@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Cards from "../components/Card";
 import Tables from "../components/Table";
@@ -31,15 +31,15 @@ export default function Home() {
 
   return (
     <>
-      <Row className="mb-3 mt-3">
-        <Col>
+      <Row className="mt-3 mb-3">
+        <Col className="md-6">
           <Cards
             title="Projects"
             total={projects.length}
             setTableState={setTableState}
           />
         </Col>
-        <Col>
+        <Col className="md-6">
           <Cards
             title="Tags"
             total={tags.length}
@@ -48,11 +48,15 @@ export default function Home() {
         </Col>
       </Row>
       <Row>
-        {tableState === "project" ? (
-          <Tables data={projects} title="Projects" />
-        ) : (
-          <Tables data={tags} title="Tags" />
-        )}
+      <Col className="md-12">
+        <Card>
+          {tableState === "project" ? (
+            <Tables data={projects} title="Projects" />
+          ) : (
+            <Tables data={tags} title="Tags" />
+          )}
+        </Card>
+      </Col>
       </Row>
     </>
   );
