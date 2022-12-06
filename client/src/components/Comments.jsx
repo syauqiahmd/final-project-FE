@@ -30,7 +30,6 @@ export default function Comments(props) {
 
   useEffect(() => {
     socket.on("connect", () => {});
-    console.log(moreComment)
     socket.emit("fetch-comment", props.projectid, moreComment);
     socket.on("fetch-comment/response", (comment) => {
 		setComment({
@@ -47,7 +46,7 @@ export default function Comments(props) {
       socket.emit("fetch-comment", props.projectid, moreComment);
     })
   }, []);
-  console.log(comment)
+
   return (
     <div style={{ marginTop: "100px" }}>
       <div id="comments">
@@ -69,7 +68,7 @@ export default function Comments(props) {
           </form>
         </div>
         { comment.response !== undefined ?  comment.response.map((el, idx) => {
-          return <CommentDetail data={el} key={idx} />;
+          return <CommentDetail data={el} key={idx} limit={moreComment}/>;
         }) : <p>Loading...</p> }
         {moreComment <  comment.totalItems ? <Button variant={"secondary"} className={"w-100"} onClick={handlerLoadMore} >Load More</Button> : <></>}
       </div>

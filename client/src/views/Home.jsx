@@ -1,7 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
 import { Helmet } from "react-helmet";
-
 import Slideshow from "../components/Slideshow";
 import TopProject from "../components/TopProject";
 import About from "../components/About";

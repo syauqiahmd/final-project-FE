@@ -1,8 +1,7 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { instance } from "../bin/axios";
 import { Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import socket from "../bin/socketio";
 
 export default function CommentDetail(props) {
   function getDate() {
@@ -15,10 +14,18 @@ export default function CommentDetail(props) {
 
   const handleDeleteComment = async () => {
     try {
-      await instance.delete(`/comment/${props.data.id}`);
+      await instance({
+        url: `/public/comment/${props.data.id}`,
+        method: "delete",
+        headers: {
+          access_token: localStorage.access_token,
+        },
+      });
+      socket.emit("fetch-comment", props.data.ProjectId, props.limit);
       //handle toasty success
     } catch (err) {
       console.log(err);
+      //handle toasty failed
     }
   };
 
@@ -33,9 +40,13 @@ export default function CommentDetail(props) {
           <div>{props.data.User.username}</div>
         </Col>
         <Col>
-        {localStorage.access_token ? <Button variant="danger" onClick={handleDeleteComment}>
-            <FontAwesomeIcon icon="fa-solid fa-trash" />
-          </Button>: ""}
+          {localStorage.access_token ? (
+            <Button variant="danger" onClick={handleDeleteComment}>
+              <FontAwesomeIcon icon="fa-solid fa-trash" />
+            </Button>
+          ) : (
+            ""
+          )}
         </Col>
       </Row>
     </div>

@@ -59,7 +59,7 @@ function Login() {
     <div className="row text-center">
       <main className="col-md-4 form-signin w-50s m-auto mt-5">
         <form onSubmit={submitLogin}>
-          <img className="mb-4" src={logo} height="35" />
+          <img className="mb-4" src={logo} height="35" alt="logo" />
           <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
           {errorHandler()}
           <div className="form-floating">

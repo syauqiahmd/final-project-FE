@@ -18,7 +18,7 @@ export default function Project() {
 	  if(loadingProjects){
 		dispatch(fetchProjects());
 	}
-  }, []);
+  }, [dispatch, loadingProjects]);
 
   return (
     <div className="project">
@@ -33,8 +33,8 @@ export default function Project() {
         <div className="row">
           {projects.map((el, idx) => {
             return (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-12">
-                <Card data={el} key={idx} />
+              <div className="col-lg-3 col-md-6 col-sm-6 col-12" key={idx}>
+                <Card data={el}/>
               </div>
             );
           })}

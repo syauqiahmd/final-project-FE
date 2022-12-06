@@ -1,20 +1,25 @@
-import { Link, useNavigate } from "react-router-dom";
-// import {} from '../store/actions/actionCreator'
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { fetchProjects, fetchProjectById } from "../store/slices/project";
+import { useEffect, useState } from "react";
+import { fetchProjects } from "../store/slices/project";
 
 import Card from "./Card";
 
 export default function TopProject() {
-  const { project, loadingProject } = useSelector((state) => {
+  const [newProject] = useState([]);
+  const { projects, loadingProjects } = useSelector((state) => {
     return state.project;
   });
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchProjects());
-  }, [dispatch]);
+    if (projects.length > 3 && newProject.length !== 3) {
+      const temp = projects.slice(1);
+      temp.forEach((el) => {
+        newProject.push(el);
+      });
+    }
+  }, [dispatch, projects.length, newProject.length]);
 
   return (
     <div id="topproject">
@@ -30,15 +35,13 @@ export default function TopProject() {
 
           <div className="container col-lg-12 col-md-6 col-12">
             <div className="row d-flex justify-content-center align-items-center">
-              <div className="col-lg-4 col-12">
-                <Card />
-              </div>
-              <div className="col-lg-4 col-12">
-                <Card />
-              </div>
-              <div className="col-lg-4 col-12">
-                <Card />
-              </div>
+              { !loadingProjects ? newProject.map((el) => {
+                return (
+                  <div className="col-lg-4 col-12" key={el.id}>
+                    <Card data={el}/>
+                  </div>
+                );
+              }): <p>Loading...</p> }
             </div>
           </div>
         </div>
