@@ -4,6 +4,7 @@ import Home from '../views/Home'
 import Projects from '../views/Projects'
 import ProjectDetail from '../views/ProjectDetail'
 import Login from '../views/Login'
+import NewProject from "../views/NewProject";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: '/project/:id',
         element: <ProjectDetail />
+      },
+      {
+        path: '/new-project',
+        element: <NewProject />
       }
     ]
   },
