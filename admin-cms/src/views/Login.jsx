@@ -36,6 +36,7 @@ export default function Login() {
       console.log(err);
       setShow(true);
       //handle error setState error
+      //kalo bisa toasty bagus
       setError(err.message)
     }
   };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import axios from "axios";
+import { instance } from "../bin/axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
@@ -26,13 +26,23 @@ export default function Register() {
   const submitReg = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:4000/Users", {
-        username: formUser.username,
-        fullname: formUser.fullname,
-        email: formUser.email,
-        password: formUser.password,
-      });
-      //sweetalert atau toasty disini untuk sukse
+      const access_token = localStorage.getItem("access_token");
+      await instance.post(
+        "/admin/register",
+        {
+          username: formUser.username,
+          fullname: formUser.fullname,
+          email: formUser.email,
+          password: formUser.password,
+        },
+        {
+          headers: {
+            access_token,
+          },
+        }
+      );
+      console.log("User admin created!");
+      //sweetalert atau toasty disini untuk sukses
       navigate("/");
     } catch (err) {
       console.log(err);
