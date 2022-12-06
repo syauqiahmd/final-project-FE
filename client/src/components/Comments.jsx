@@ -34,13 +34,6 @@ export default function Comments({id}){
 						<CommentDetail key={index} comment={data.comment} />
 					)
 				})}
-				{/* <CommentDetail />
-				<CommentDetail />
-				<CommentDetail />
-				<CommentDetail />
-				<CommentDetail />
-				<CommentDetail />
-				<CommentDetail /> */}
 			</div>
 		</div>
 	)
