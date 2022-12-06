@@ -16,12 +16,6 @@ export default function TopProject() {
     dispatch(fetchProjects());
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(fetchProjectById({ id: 1 }));
-    console.log(project);
-    // use useEffect to get and manage project to see what we get in project, use project.id to watch in param useEffect changes data
-  }, [dispatch, project.id]);
-
   return (
     <div id="topproject">
       <div className="container">

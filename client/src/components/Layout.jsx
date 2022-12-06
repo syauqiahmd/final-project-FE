@@ -9,10 +9,8 @@ export default function Layout() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("sebelum if", localStorage.access_token);
     if (localStorage.access_token) {
-      console.log("test masuk");
-      dispatch(fetchUser());
+      dispatch(fetchUser(localStorage.access_token));
     }
   }, []);
   return (

@@ -1,13 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { instance } from "../../bin/axios";
 
-export const fetchUser = createAsyncThunk("users/fetchSucces", async () => {
+export const fetchUser = createAsyncThunk("users/fetchSucces", async (access_token) => {
   const { data } = await instance({
     method: "get",
     url: "/public/profile",
     headers: {
-      access_token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjcwMjU3MjA5fQ.uhYPefjJbpajCv60ufnF6tpOcqbKSpFIZblK2OmHoRM",
+      access_token
     },
   });
   return data;
@@ -19,12 +18,16 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    loginStatus(state, action) {
+    loginStatus(state) {
       if (localStorage.access_token) {
         state.isLogin = true;
       } else {
         state.isLogin = false;
       }
+    },
+    logoutUser(state) {
+      state.user = {};
+      state.isLogin = false;
     },
   },
   extraReducers: (builder) => {
@@ -35,6 +38,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { loginStatus } = userSlice.actions;
+export const { loginStatus, logoutUser } = userSlice.actions;
 
 export default userSlice.reducer;

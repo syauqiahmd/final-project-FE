@@ -1,28 +1,40 @@
-import { Link, useNavigate } from "react-router-dom"
-import { useSelector, useDispatch } from 'react-redux'
-import Step from "../components/Step"
-import Introduction from '../components/Introduction'
-import Comments from "../components/Comments"
-import { Helmet } from "react-helmet"
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import Step from "../components/Step";
+import Introduction from "../components/Introduction";
+import Comments from "../components/Comments";
+import { Helmet } from "react-helmet";
+import { useEffect } from "react";
+import { fetchProjectById } from "../store/slices/project";
 
-export default function ProjectDetail(){
-	//fetcing project id
-	return (
-		<div id="project-detail">
-			<Helmet>
-				<title>Project Detail</title>
-			</Helmet>
-			<div className="container">
-				<div id="title">
-					<h1>Project Title</h1>
-					<h5>Written By: Anonim</h5>
-				</div>
-				<Introduction />
-				<Step />
-				<Step />
-				<Comments projectid={'1'}/>
+export default function ProjectDetail() {
+  const {state} = useLocation()
+  const dispatch = useDispatch();
+  const { projectById, loadingProject } = useSelector((state) => {
+	return state.project}
+  );
 
-			</div>
-		</div>
-	)
+  useEffect(() => {
+    if (loadingProject) {
+      dispatch(fetchProjectById(state.id));
+    }
+  }, []);
+
+  return (
+    <div id="project-detail">
+      <Helmet>
+        <title>{projectById?.title}</title>
+      </Helmet>
+      <div className="container">
+        <div id="title">
+          <h1>{projectById?.title}</h1>
+          <h5>Written By: Anonim</h5>
+        </div>
+        <Introduction />
+        <Step />
+        <Step />
+        <Comments projectid={state.id} />
+      </div>
+    </div>
+  );
 }

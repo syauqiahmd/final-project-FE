@@ -3,29 +3,51 @@ import { useSelector, useDispatch } from "react-redux";
 import CommentDetail from "./CommentDetail";
 import { useEffect, useState } from "react";
 import socket from "../bin/socketio";
+import { Button } from "react-bootstrap";
 
 export default function Comments(props) {
   const [inputComment, setInputComment] = useState("");
-  const [comment, setComment] = useState([]);
+  const [comment, setComment] = useState({});
+  const [moreComment, setMoreComment] = useState(8)
+  const { user } = useSelector((state) => {
+    return state.user;
+  });
 
   const submitComment = (e) => {
     e.preventDefault();
-    socket.emit("handler-comment", props.projectid, inputComment);
+    socket.emit("handler-comment", {
+      UserId: user.id,
+      ProjectId: props.projectid,
+      comment: inputComment,
+    });
+    socket.emit("fetch-comment", props.projectid, 0);
     setInputComment("");
   };
 
-  useEffect(() => {
-    socket.on("connect", () => {
-      console.log("masuk");
-    });
-    socket.emit("fetch-comment", props.projectid, 0);
-    socket.on("fetch-comment/response", (comment) => {
-      setComment(comment.response);
-      console.log(comment.response);
-      // butuh useState paging
-    });
-  }, [comment?.totalItems]);
+  const handlerLoadMore = () => {
+    setMoreComment(current => current + 5)
+  };
 
+  useEffect(() => {
+    socket.on("connect", () => {});
+    console.log(moreComment)
+    socket.emit("fetch-comment", props.projectid, moreComment);
+    socket.on("fetch-comment/response", (comment) => {
+		setComment({
+      totalItems: comment.totalItems,
+      response : comment.response,
+      limit: comment.limit
+    });
+    });
+  }, [comment.totalItems, moreComment]);
+
+  useEffect(() => {
+    setComment([])
+    socket.on("handler-comment/response",()=>{
+      socket.emit("fetch-comment", props.projectid, moreComment);
+    })
+  }, []);
+  console.log(comment)
   return (
     <div style={{ marginTop: "100px" }}>
       <div id="comments">
@@ -46,9 +68,10 @@ export default function Comments(props) {
             </div>
           </form>
         </div>
-        {comment.map((el, idx) => {
+        { comment.response !== undefined ?  comment.response.map((el, idx) => {
           return <CommentDetail data={el} key={idx} />;
-        })}
+        }) : <p>Loading...</p> }
+        {moreComment <  comment.totalItems ? <Button variant={"secondary"} className={"w-100"} onClick={handlerLoadMore} >Load More</Button> : <></>}
       </div>
     </div>
   );

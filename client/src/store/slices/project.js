@@ -4,15 +4,15 @@ import { instance } from "../../bin/axios";
 export const fetchProjects = createAsyncThunk(
   "projects/fetchSucces",
   async () => {
-    const { data } = await instance.get("/Projects");
+    const { data } = await instance.get("/public/projects");
     return data;
   }
 );
 
 export const fetchProjectById = createAsyncThunk(
   "projectById/fetchSucces",
-  async ({ id }) => {
-    const { data } = await instance.get(`/Projects/${id}`);
+  async (id) => {
+    const { data } = await instance.get(`/public/projects/${id}`);
     return data;
   }
 );
@@ -23,7 +23,13 @@ const projectSlice = createSlice({
     loadingProjects: true,
     loadingProject: true,
     projects: [],
-    project: {},
+    projectById: {},
+  },
+  reducers: {
+    resetingProjectById(state) {
+      state.loadingProject = true;
+      state.projectById = {};
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -41,11 +47,12 @@ const projectSlice = createSlice({
       })
       .addCase(fetchProjectById.fulfilled, (state, action) => {
         state.loadingProject = false;
-        state.project = action.payload;
+        state.projectById = action.payload;
       });
   },
 });
 
+export const { resetingProjectById } = projectSlice.actions;
 export default projectSlice.reducer;
 
 // cara menggunakan di bagian component atau view
