@@ -7,12 +7,6 @@
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
-
 .App-header {
   min-height: 100vh;
   display: flex;
@@ -26,18 +20,6 @@
   color: rgb(112, 76, 182);
 }
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
 form {
   background-color: white;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
@@ -49,14 +31,14 @@ form {
   border-color: tomato !important;
 }
 
-.btn-primary:hover,
-.btn-primary:focus,
 .btn-primary:active,
-.btn-primary.active,
-.open > .dropdown-toggle.btn-primary {
-  color: #fff;
+.btn-primary:hover {
   background-color: rgb(249, 145, 94) !important;
   border-color: rgb(249, 145, 94) !important;
+}
+.btn-primary:focus{
+  background-color: tomato !important;
+  border-color: tomato !important;
 }
 
 .logo-dithub {
@@ -82,6 +64,6 @@ ul li a:hover {
   text-decoration: none;
 }
 
-.form-label{
-float: left;
+.form-label {
+  float: left;
 }
