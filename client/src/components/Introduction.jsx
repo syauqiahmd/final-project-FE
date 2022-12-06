@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
-export default function Introduction({difficulty, introduction, imgUrl}){
+export default function Introduction({difficulty, introduction, imgUrl, totalStep}){
 	return (
 		<div id="introduction" className="mb-5">
 			<div className="row mb-5">
@@ -16,7 +16,7 @@ export default function Introduction({difficulty, introduction, imgUrl}){
 					</div>
 					<div className="d-flex justify-content-between infobox mb-3">
 						<span>Total Step</span>
-						<span>#2</span>
+						<span>#{totalStep}</span>
 					</div>
 					<div className="d-flex justify-content-between infobox mb-3">
 						<span>Comment</span>

@@ -15,9 +15,8 @@ export default function Project(){
 
 	useEffect(() => {
 		dispatch(fetchProjects());
-	}, []);
+	}, [dispatch]);
 
-	// console.log(projects);
 	return (
 		<div id="project">
 			<Helmet>
@@ -35,7 +34,7 @@ export default function Project(){
 						projects.map((data, index) => {
 							return (
 								<div className="col-lg-3 col-md-6 col-sm-6 col-12" key={index}>
-									<Card title={data.title} slug={data.id} imgUrl={data.imgUrl} />
+									<Card title={data.title} slug={data.id} imgUrl={data.imgUrl} category={data.Tag.name} username={data.User.username} />
 								</div>
 							)
 						})

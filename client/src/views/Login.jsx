@@ -38,14 +38,14 @@ const Login = () => {
     dispatch(postLogin({ form: formLogin }))
     console.log(user);
     // console.log(getdata);
-    if(loadingUser){
-      localStorage.setItem('access_token', data.access_token)
-    }
+    // if(loadingUser){
+    //   localStorage.setItem('access_token', data.access_token)
+    // }
   }
 
   return (
-    <div className='row text-center'>
-      <main className="col-md-4 col-10 form-signin w-50s m-auto mt-5">
+    <div className='text-center vh-100 d-flex justify-content-center align-items-center'>
+      <main className="col-md-3 col-10 form-signin w-50s pb-5">
         <form onSubmit={submitLogin}>
           <Link to="/"><img className="mb-4" src={logo} height="35" /></Link>
           <Link to="/"><h6 className='mb-4'>Back to Home</h6></Link>

@@ -7,20 +7,27 @@ import { fetchProjects, fetchProjectById } from "../store/slices/project";
 import Card from "./Card";
 
 export default function TopProject() {
-  const { project, loadingProject } = useSelector((state) => {
+  const { projects, loadingProjects } = useSelector((state) => {
     return state.project;
   });
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchProjects());
-  }, [dispatch]);
+  }, []);
+  
+  // console.log(projects[2]?);
 
-  useEffect(() => {
-    dispatch(fetchProjectById({ id: 1 }));
-    console.log(project);
-    // use useEffect to get and manage project to see what we get in project, use project.id to watch in param useEffect changes data
-  }, [dispatch, project.id]);
+
+  // console.log(projects);
+
+
+  // useEffect(() => {
+  //   dispatch(fetchProjectById({ id: 1 }));
+  //   console.log(project);
+  //   // use useEffect to get and manage project to see what we get in project, use project.id to watch in param useEffect changes data
+  // }, [dispatch, project.id]);
 
   return (
     <div id="topproject">
@@ -37,13 +44,13 @@ export default function TopProject() {
           <div className="container col-lg-12 col-md-6 col-12">
             <div className="row d-flex justify-content-center align-items-center">
               <div className="col-lg-4 col-12">
-                <Card />
+                <Card title={projects[0]?.title} slug={projects[0]?.id} imgUrl={projects[0]?.imgUrl} category={projects[0]?.Tag.name} username={projects[0]?.User.username} />
               </div>
               <div className="col-lg-4 col-12">
-                <Card />
+                <Card title={projects[1]?.title} slug={projects[1]?.id} imgUrl={projects[1]?.imgUrl} category={projects[1]?.Tag.name} username={projects[1]?.User.username} />
               </div>
               <div className="col-lg-4 col-12">
-                <Card />
+                <Card title={projects[2]?.title} slug={projects[2]?.id} imgUrl={projects[2]?.imgUrl} category={projects[2]?.Tag.name} username={projects[2]?.User.username} />
               </div>
             </div>
           </div>

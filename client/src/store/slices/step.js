@@ -4,8 +4,8 @@ import { instance } from "../../bin/axios";
 export const fetchSteps = createAsyncThunk(
   "step/fetchSucces",
   async ({ projectid }) => {
-    const { data } = await instance.get(`/Steps?ProjectId=${projectid}`);
-    return data;
+    const { data } = await instance.get(`/public/projects/${projectid}`);
+    return data.Steps;
   }
 );
 
