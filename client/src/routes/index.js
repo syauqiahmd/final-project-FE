@@ -4,6 +4,7 @@ import Home from '../views/Home'
 import Projects from '../views/Projects'
 import ProjectDetail from '../views/ProjectDetail'
 import Login from '../views/Login'
+import PageNotFound from "../views/PageNotFound";
 
 const router = createBrowserRouter([
   {
@@ -26,7 +27,11 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />
-  }
+  },
+	{
+    path: '*',
+    element: <PageNotFound />
+  },
 ]);
 
 export default router;
