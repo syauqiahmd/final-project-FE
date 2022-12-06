@@ -1,12 +1,43 @@
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Helmet } from "react-helmet"
-import AddStep from "../components/AddStep"
+import EditStep from "../components/EditStep"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { fetchProjectById } from "../store/slices/project";
 
-export default function NewProject(){
+export default function EditProject(){
 	const {id} = useParams()
+	const [dataProject, setDataProject] = useState({})
+	
+	const { project, loadingProject } = useSelector((state) => {
+		return state.project;
+	});
+	// const { steps, loadingSteps } = useSelector((state) => {
+	// 	return state.step;
+	// });
+	const dispatch = useDispatch();
+
+	const [formEdit, setFormEdit] = useState({
+		title: '',
+		difficulty: '',
+		introduction: ''
+	})
+
+	useEffect(() => {
+		dispatch(fetchProjectById({ id: id }));
+		console.log(project);
+		setFormEdit({
+			title: project?.title,
+			difficulty: project?.difficulty,
+			introduction: project?.introduction
+		})
+		// console.log(project);
+		// dispatch(fetchSteps({ projectid: id }));
+	}, [project?.id]);
+
+	
+
 	const [steps, setStep] = useState([{}])
 
 	const addStep = (e) => {
@@ -24,22 +55,40 @@ export default function NewProject(){
 			// ...steps.slice(index + 1)
 		  ])
 	}
+
+	console.log(project);
 	return (
 		<div id="new-project">
 			<Helmet>
-				<title>New Project | DIT-HUB</title>
+				<title>Edit Project | DIT-HUB</title>
 			</Helmet>
 			<div className="container">
 				<div id="title">
-					<h1>New Project</h1>
+					<h1>{project.title}</h1>
 				</div>
 				<div className="mb-5 form">
 					<div className="input-form">
-						<label>Project Name</label><input type="text" className="form-control" name='title' placeholder="Project Name"/>
+						<label>Project Name</label><input type="text" className="form-control" name='title' placeholder="Project Name" value={formEdit.title}
+						onChange={(e) => {
+							e.preventDefault()
+							setFormEdit({
+								...formEdit,
+								title: e.target.value
+							})
+						}}
+						/>
 					</div>
 					<div className="input-form">
 						<label>Difficulty</label>
-						<select className="form-control" name='difficulty'>
+						<select className="form-control" name='difficulty' value={formEdit.difficulty}
+						onChange={(e) => {
+							e.preventDefault()
+							setFormEdit({
+								...formEdit,
+								difficulty: e.target.value
+							})
+						}}
+						>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
@@ -48,7 +97,16 @@ export default function NewProject(){
 						</select>
 					</div>
 					<div className="input-form">
-						<label>Introduction</label><textarea type="text" className="form-control" name='introduction' placeholder="Introduction"></textarea>
+						<label>Introduction</label><textarea type="text" className="form-control" name='introduction' placeholder="Introduction" value={formEdit.introduction}
+						onChange={(e) => {
+							e.preventDefault()
+							setFormEdit({
+								...formEdit,
+								introduction: e.target.value
+							})
+						}}
+						
+						></textarea>
 					</div>
 					<div className="input-form">
 						<label>Main Image</label><input type="file" className="form-control" name="imgUrl" />
@@ -58,10 +116,10 @@ export default function NewProject(){
 						<label>Step Detail</label>
 						<div style={{width: '100%'}}>
 						{
-							steps.map((data, index) => {
+							project.Steps?.map((data, index) => {
 								return (
 									<div key={index} className="mb-4">
-										<AddStep key={index} />
+										<EditStep name={data.name} description={data.description} imgUrl={data.imgUrl} />
 										{
 											steps.length > 1
 											? <button className="btn btn-danger" name={index}
