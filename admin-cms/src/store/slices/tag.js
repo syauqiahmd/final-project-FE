@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../bin/axios";
 
 export const fetchTags = createAsyncThunk("tags/fetchSuccess", async () => {
-  const { data } = await instance.get("/Tags");
+  const { data } = await instance.get("/public/tags");
   return data;
 });
 

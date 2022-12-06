@@ -24,6 +24,15 @@ export default function Tables(props) {
     );
   }
 
+  function tableHeadReports(){
+    return (
+      <tr>
+        <th>No.</th>
+        <th>Name</th>
+      </tr>
+    );
+  }
+
   function tableBody(el,index){
     if (props.title === "Projects") {
       return <TableBodyProjects data={el} index={index} key={index}/>

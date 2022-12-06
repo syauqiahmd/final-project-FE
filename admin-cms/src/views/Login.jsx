@@ -26,15 +26,14 @@ export default function Login() {
   const submitLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await instance.get(`/Users?email=${formLogin.email}`, {
+      const { data } = await instance.post("/admin/login", {
         email: formLogin.email,
         password: formLogin.password,
       });
-      console.log(data);
-      // throw { message: "Error!!" };
       localStorage.setItem("access_token", data.access_token);
       navigate("/");
     } catch (err) {
+      console.log(err);
       setShow(true);
       //handle error setState error
       setError(err.message)

@@ -33,17 +33,25 @@ export default function Home() {
     <>
       <Row className="mb-3 mt-3">
         <Col>
-          <Cards title="Projects" total={projects.length} setTableState={setTableState} />
+          <Cards
+            title="Projects"
+            total={projects.length}
+            setTableState={setTableState}
+          />
         </Col>
         <Col>
-          <Cards title="Tags" total={tags.length} setTableState={setTableState} />
+          <Cards
+            title="Tags"
+            total={tags.length}
+            setTableState={setTableState}
+          />
         </Col>
       </Row>
       <Row>
         {tableState === "project" ? (
-          <Tables data={projects} title="Projects"/>
+          <Tables data={projects} title="Projects" />
         ) : (
-          <Tables data={tags} title="Tags"/>
+          <Tables data={tags} title="Tags" />
         )}
       </Row>
     </>
