@@ -20,7 +20,7 @@ export default function Project(){
 	return (
 		<div id="project">
 			<Helmet>
-				<title>Projects List</title>
+				<title>Projects List | DIT-HUB</title>
 			</Helmet>
 			<div className="container">
 				{

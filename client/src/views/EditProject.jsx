@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from "react"
 import { Helmet } from "react-helmet"
@@ -6,6 +6,7 @@ import AddStep from "../components/AddStep"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function NewProject(){
+	const {id} = useParams()
 	const [steps, setStep] = useState([{}])
 
 	const addStep = (e) => {

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { postLogin } from "../store/slices/user";
 import { instance } from "../bin/axios";
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
   const navigate = useNavigate()
@@ -66,6 +67,9 @@ const Login = () => {
 
   return (
     <div className='text-center vh-100 d-flex justify-content-center align-items-center'>
+      <Helmet>
+				<title>Login | DIT-HUB</title>
+			</Helmet>
       <main className="col-md-3 col-10 form-signin w-50s pb-5">
         <form onSubmit={submitLogin}>
           <Link to="/"><img className="mb-4" src={logo} height="35" /></Link>

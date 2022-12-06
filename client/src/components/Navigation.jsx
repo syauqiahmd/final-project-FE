@@ -59,7 +59,7 @@ export default function Navigation(){
 					<Link onClick={() => {
 						localStorage.removeItem('access_token')
 						navigate("/");
-					}} className="btn btn-outline-dark">Logout</Link>
+					}} className="btn btn-outline-danger">Logout</Link>
 					</>
 				}
 
