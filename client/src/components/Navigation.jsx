@@ -1,11 +1,26 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import ImgLogo from '../assets/logo.png';
-import { useState } from "react";
-// import {} from '../store/actions/actionCreator'
+import { useState, useEffect } from "react";
+import { fetchUser } from "../store/slices/user";
 
 export default function Navigation(){
+	const dispatch = useDispatch()
+	const { user, loadingUser } = useSelector((state) => {
+		return state.user;
+	});
 	const [collpase, setCollapse] = useState('collapse')
+	const navigate = useNavigate()
+
+	const access_token = localStorage.getItem('access_token')
+
+	useEffect(() => {
+		// console.log(access_token);
+		dispatch(fetchUser({access_token}));
+
+	}, [access_token]);
+
+	// console.log(user, '<---data user');
 
 	const appear = (e) => {
 		e.preventDefault()
@@ -31,8 +46,23 @@ export default function Navigation(){
 				<a href="/#about" className="nav-item nav-link">About</a>
 			</span>
 			<span className={collpase + " navbar-collapse text-center"} id="navbarNavAltMarkup">
-				<Link to="/" className="btn btn-outline-dark">Register</Link>
-				<Link to="/login" className="btn btn-outline-dark">Login</Link>
+				{
+					localStorage.getItem('access_token') === null
+					?
+					<>
+					<Link to="/" className="btn btn-outline-dark">Register</Link>
+					<Link to="/login" className="btn btn-outline-dark">Login</Link>
+					</>
+					:
+					<>
+					Hi {user.username}
+					<Link onClick={() => {
+						localStorage.removeItem('access_token')
+						navigate("/");
+					}} className="btn btn-outline-dark">Logout</Link>
+					</>
+				}
+
 			</span>
 		</nav>
 	)

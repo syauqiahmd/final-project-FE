@@ -23,11 +23,16 @@ export default function Project(){
 				<title>Projects List</title>
 			</Helmet>
 			<div className="container">
-				<div className="d-flex justify-content-end mt-4">
-					<Link to="/new-project" className="btn btn-primary">
-						Add Project
-					</Link>
-				</div>
+				{
+					localStorage.getItem('access_token') !== null
+					? <div className="d-flex justify-content-end mt-4">
+						<Link to="/new-project" className="btn btn-primary">
+							Add Project
+						</Link>
+					  </div>
+					: null
+				}
+				
 				<h2 className="text-center mt-1 mb-5">Projects</h2>
 				<div className="row">
 					{

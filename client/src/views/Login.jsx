@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import './login.scss';
 import logo from "../assets/logo.png";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { postLogin } from "../store/slices/user";
+import { instance } from "../bin/axios";
 
 const Login = () => {
+  const navigate = useNavigate()
   const { user, loadingUser } = useSelector((state) => {
 		return state.user;
 	});
@@ -18,6 +20,8 @@ const Login = () => {
     email: '',
     password: ''
   })
+
+  const [token, setToken] = useState('')
 
   const emailHandler = (e) => {
     setFormLogin({
@@ -32,16 +36,33 @@ const Login = () => {
     })
   }
 
-  const submitLogin = (e) => {
+  const submitLogin = async (e) => {
     e.preventDefault()
-    // console.log(formLogin)
-    dispatch(postLogin({ form: formLogin }))
-    console.log(user);
+    try {
+      // // console.log(formLogin)
+      // dispatch(postLogin({ form: formLogin }))
+      // // setFormLogin()
+      // console.log(user);
+      const { data } = await instance.post("/public/login", {
+        email: formLogin.email,
+        password: formLogin.password,
+      });
+      // console.log(data.access_token);
+      localStorage.setItem("access_token", data.access_token);
+      navigate("/");
+      // localStorage.setItem("access_token", data.access_token);
+      // navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+    
     // console.log(getdata);
     // if(loadingUser){
     //   localStorage.setItem('access_token', data.access_token)
     // }
   }
+
+  // console.log(user);
 
   return (
     <div className='text-center vh-100 d-flex justify-content-center align-items-center'>

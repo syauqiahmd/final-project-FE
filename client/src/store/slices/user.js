@@ -5,15 +5,32 @@ import { instance } from "../../bin/axios";
 // const initialState = { user: {} };
 
 export const postLogin = createAsyncThunk(
-  "comments/fetchSucces",
+  "login/fetchSuccess",
   async ({ form }) => {
     try {
-      const { data } = await instance.get(`/Users?email=${form.email}&password=${form.password}`);
+      const { data } = await instance.post(`/public/login`, form);
       return data;
     } catch (err) {
       return 'error'
     }
-    
+  }
+);
+
+export const fetchUser = createAsyncThunk(
+  "user/fetchSuccess",
+  async ({ access_token }) => {
+    // console.log(access_token);
+    try {
+      const { data } = await instance.get(`/public/profile`, {
+        headers: {
+          access_token: access_token
+        }
+      });
+      // console.log(data);
+      return data;
+    } catch (err) {
+      return 'error'
+    }
   }
 );
 
@@ -29,6 +46,13 @@ const userSlice = createSlice({
         state.loadingUser = true;
       })
       .addCase(postLogin.fulfilled, (state, action) => {
+        state.user = action.payload;
+      });
+    builder
+      .addCase(fetchUser.pending, (state) => {
+        state.loadingUser = true;
+      })
+      .addCase(fetchUser.fulfilled, (state, action) => {
         state.user = action.payload;
       });
   },
