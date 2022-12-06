@@ -6,6 +6,7 @@ import Comments from "../components/Comments"
 import { Helmet } from "react-helmet"
 
 export default function ProjectDetail(){
+	//fetcing project id
 	return (
 		<div id="project-detail">
 			<Helmet>
@@ -19,7 +20,7 @@ export default function ProjectDetail(){
 				<Introduction />
 				<Step />
 				<Step />
-				<Comments />
+				<Comments projectid={'1'}/>
 
 			</div>
 		</div>

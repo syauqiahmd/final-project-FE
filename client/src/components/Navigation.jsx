@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, NavLink } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import ImgLogo from '../assets/logo.png';
 import { useState } from "react";
@@ -31,8 +31,8 @@ export default function Navigation(){
 				<a href="/#about" className="nav-item nav-link">About</a>
 			</span>
 			<span className={collpase + " navbar-collapse text-center"} id="navbarNavAltMarkup">
-				<a className="btn btn-outline-dark">Register</a>
-				<a className="btn btn-outline-dark">Login</a>
+				<NavLink className={"btn btn-outline-dark"} to={'/register'}>Register</NavLink>
+				<NavLink className={"btn btn-outline-dark"} to={'/login'}>Login</NavLink>
 			</span>
 		</nav>
 	)

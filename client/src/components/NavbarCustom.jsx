@@ -43,9 +43,9 @@ export default function NavbarCustom() {
               to={"/login"}>
               Login
             </NavLink>
-            <button type="button" class="btn btn-primary">
+            <NavLink className={"btn btn-primary me-2"} to={"/register"}>
               Register
-            </button>
+            </NavLink>
           </div>
         </header>
       </div>

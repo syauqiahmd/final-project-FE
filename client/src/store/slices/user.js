@@ -1,44 +1,40 @@
-import { createSlice } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { instance } from "../../bin/axios";
 
-const initialState = { user: {} };
+export const fetchUser = createAsyncThunk("users/fetchSucces", async () => {
+  const { data } = await instance({
+    method: "get",
+    url: "/public/profile",
+    headers: {
+      access_token:
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjcwMjU3MjA5fQ.uhYPefjJbpajCv60ufnF6tpOcqbKSpFIZblK2OmHoRM",
+    },
+  });
+  return data;
+});
+
+const initialState = { user: {}, isLogin: false };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    login: async (state, {payload}) => {
-      try {
-        // sent pay load to axios
-
-        // const { data } = await axios.post(
-        //   "http://localhost:4000/users/login",
-        //   payload
-        // );
-
-        // handle success axios
-      } catch (err) {
-        console.log(err);
-        //handle error if login failed
-      }
-    },
-    register: async (state, action) => {
-      try {
-        // sent pay load to axios
-
-        // const { data } = await axios.post(
-        //   "http://localhost:4000/users/login",
-        //   action.payload
-        // );
-        
-        // handle success axios
-      } catch (err) {
-        console.log(err);
-        //handle error if login failed
+    loginStatus(state, action) {
+      if (localStorage.access_token) {
+        state.isLogin = true;
+      } else {
+        state.isLogin = false;
       }
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchUser.fulfilled, (state, actions) => {
+      state.user = actions.payload;
+      state.isLogin = true;
+    });
+  },
 });
 
-export const { login, register } = userSlice.actions;
+export const { loginStatus } = userSlice.actions;
+
 export default userSlice.reducer;
