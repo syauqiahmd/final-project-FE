@@ -56,8 +56,8 @@ export default function Login() {
 
   return (
     <>
-      <div className="container my-5">
-        <div className="row">
+      <div className="container my-5 py-5">
+        <div className="row mt-4">
           <div className="col-md-6 d-flex">
             <img className="login__imagek align-self-center" src="https://www.freevector.com/uploads/vector/preview/28488/Businessman_Happy_Accepting_News.jpg"
               width="100%" alt="" />
