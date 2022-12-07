@@ -2,6 +2,7 @@ import { instance } from "../bin/axios";
 import { Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import socket from "../bin/socketio";
+import { toast } from 'react-toastify';
 
 export default function CommentDetail(props) {
   function getDate() {
@@ -23,8 +24,9 @@ export default function CommentDetail(props) {
       });
       socket.emit("fetch-comment", props.data.ProjectId, props.limit);
       //handle toasty success
+      toast.success("comment deleted")
     } catch (err) {
-      console.log(err);
+      toast.error(err.response.data)
       //handle toasty failed
     }
   };

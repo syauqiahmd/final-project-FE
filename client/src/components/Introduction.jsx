@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { instance } from "../bin/axios";
+import { toast } from "react-toastify";
 
 export default function Introduction(props) {
   const handlerFav = async () => {
@@ -13,9 +14,11 @@ export default function Introduction(props) {
       });
       //   console.log(data);
       // handler toastfy success
+      toast.success("success add to favorite")
     } catch (err) {
       console.log(err);
       // handler toastfy
+      toast.error(err.response.data)
     }
   };
 
@@ -30,9 +33,11 @@ export default function Introduction(props) {
       });
       // console.log(data);
       // handler toastfy success
+      toast.success("report successful")
     } catch (err) {
       console.log(err);
       // handler toastfy
+      toast.error(err.response.data)
     }
   };
 
