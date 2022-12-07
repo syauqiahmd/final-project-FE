@@ -5,6 +5,7 @@ import logo from "../assets/logo.png";
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { postLogin } from "../store/slices/user";
+import { Form, Row, Col, Button } from 'react-bootstrap';
 
 const Login = () => {
   const { user, loadingUser } = useSelector((state) => {
@@ -39,42 +40,67 @@ const Login = () => {
     console.log(user);
     // console.log(getdata);
     if(loadingUser){
-      localStorage.setItem('access_token', data.access_token)
+      // localStorage.setItem('access_token', data.access_token)
     }
   }
 
   return (
-    <div className='row text-center'>
-      <main className="col-md-4 col-10 form-signin w-50s m-auto mt-5">
-        <form onSubmit={submitLogin}>
-          <Link to="/"><img className="mb-4" src={logo} height="35" /></Link>
-          <Link to="/"><h6 className='mb-4'>Back to Home</h6></Link>
-          <h3 className="h3 mb-3 fw-normal">Please sign in</h3>
-          <div className="form-floating">
-            <input type="email" className="form-control" 
-            name='email' 
-            id="floatingInput"
-            placeholder="name@example.com" 
-            value={formLogin.email}
-            onChange={emailHandler}
-            />
-            <label>Email address</label>
+    <>
+      <div className="container my-5 py-5">
+        <div className="row mt-4">
+          <div className="col-md-6 d-flex">
+            <img className="login__imagek align-self-center" src="https://www.freevector.com/uploads/vector/preview/28488/Businessman_Happy_Accepting_News.jpg"
+              width="100%" alt="" />
           </div>
-          <div className="form-floating mt-2">
-            <input type="password" 
-            className="form-control" 
-            name='password' 
-            id="floatingPassword" 
-            placeholder="Password" 
-            value={formLogin.password}
-            onChange={passwordHandler}
-            />
-            <label>Password</label>
+          <div className="col-md-5 d-flex">
+            <div className="align-self-center card w-100">
+              <div className="card-body">
+                <Form className="rounded p-4 p-sm-3">
+                  <Row className="mb-3 text-center">
+                    <h1 className="display-6">Login</h1>
+                  </Row>
+                  <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridEmail">
+                      <Form.Label>Email</Form.Label>
+                      <Form.Control
+                        name="email"
+                        type="email"
+                        value={formLogin.email}
+                        onChange={emailHandler}
+                        placeholder="Enter email"
+                      />
+                    </Form.Group>
+                  </Row>
+                  <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridPassword">
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control
+                        name="password"
+                        type="password"
+                        value={formLogin.password}
+                      onChange={passwordHandler}
+                        placeholder="Enter password"
+                      />
+                    </Form.Group>
+                  </Row>
+
+                  <Button variant="primary" type="submit" onClick={submitLogin}>
+                    Login
+                  </Button>
+                  <Row className="mb-3 mt-5 text-center">
+                  <p className="text-center">
+                    develope by. 
+                    <br/>
+                    <img src={logo} alt="" className="w-50 text-center" srcset="" />
+                  </p>
+                  </Row>
+                </Form>
+              </div>
+            </div>
           </div>
-          <button className="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign in</button>
-        </form>
-      </main>
-    </div>
+        </div>
+      </div>
+    </>
   );
 }
 
