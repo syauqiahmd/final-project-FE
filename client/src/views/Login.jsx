@@ -35,6 +35,7 @@ export default function Login() {
       password: formLogin.password,
     });
   };
+  
   const passwordHandler = (e) => {
     setFormLogin({
       email: formLogin.email,

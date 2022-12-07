@@ -5,6 +5,8 @@ export const fetchProjects = createAsyncThunk(
   "projects/fetchSuccess",
   async () => {
     const { data } = await instance.get("/public/projects");
+    const output =  data.filter(el => el.status == 'Active')
+    // console.log(output)
     return data;
   }
 );

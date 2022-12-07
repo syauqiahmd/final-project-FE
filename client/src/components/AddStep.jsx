@@ -2,19 +2,44 @@ import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from "react"
 
-export default function AddStep({name, imgUrl, description}){
+export default function AddStep(props){
 	const [getDescription, setDescription] = useState([{}])
 
-	const [stepForm, setForm] = useState({
-		name,
-		imgUrl,
-		description
+	const [stepForm, setStepForm] = useState({
+		Names : props.objstep.name,
+		image : props.objstep.image,
+		description : props.objstep.description,
 	})
 
 	const addStep = (e) => {
 		e.preventDefault()
 		setDescription([...getDescription, {}])
 	}
+
+	const handleChange = (e) => {
+		const name = e.target.name;
+		const value = e.target.value;
+	
+		const newForm = {
+		  ...stepForm,
+		};
+	
+		newForm[name] = value;
+		setStepForm(newForm);
+	  };
+
+	const handleDescription = (e) => {
+		const name = e.target.name;
+		const value = e.target.value;
+	
+		const newForm = {
+		  ...stepForm,
+		};
+	
+		newForm[name] = value;
+		setStepForm(newForm);
+	  };
+	
 
 	const removeStep = (e) => {
 		e.preventDefault()
@@ -29,10 +54,10 @@ export default function AddStep({name, imgUrl, description}){
 	return (
 		<div className="add-step mb-3">
 			<div className="input-form">
-				<label>Step Title</label><input type="text" className="form-control" name='name' placeholder="Step Title" value={stepForm.name}/>
+				<label>Step Title</label><input type="text" className="form-control" name='name' value={stepForm.Names} onChange={handleChange} placeholder="Step Title"/>
 			</div>
 			<div className="input-form">
-				<label>Step Image</label><input type="file" className="form-control" name="imgUrl" />
+				<label>Step Image</label><input type="file" className="form-control" name="imgUrl"/>
 			</div>
 			<div className="input-form2">
 				<label>Description</label>
@@ -40,7 +65,7 @@ export default function AddStep({name, imgUrl, description}){
 				{
 					getDescription.map((data, index) => {
 						return (
-							<textarea type="text" className="form-control mb-4" name='description' placeholder="Description" key={index}></textarea>
+							<textarea type="text" className="form-control mb-4" name='description' placeholder="Description" key={index} value={stepForm.description} onChange={handleDescription}></textarea>
 						)
 					})
 				}
