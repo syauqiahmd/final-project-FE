@@ -1,4 +1,4 @@
-.btn-danger {
+.btn-danger, .btn-outline-danger:hover {
     color: #fff !important;
 }
 
@@ -64,6 +64,12 @@
         .right {
             padding: 30px;
         }
+    }
+}
+
+.card-body {
+    span {
+        font-size: 20px;
     }
 }
 

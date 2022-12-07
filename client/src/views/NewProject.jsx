@@ -17,7 +17,6 @@ export default function NewProject(){
 		e.preventDefault()
 		let index = e.target.name
 		index = Number(index)
-		console.log(index);
 		setStep([
 			...steps.slice(index + 1),
 			...steps.slice(0, index)
@@ -27,7 +26,7 @@ export default function NewProject(){
 	return (
 		<div id="new-project">
 			<Helmet>
-				<title>New Project</title>
+				<title>New Project | DIT-HUB</title>
 			</Helmet>
 			<div className="container">
 				<div id="title">
@@ -51,7 +50,8 @@ export default function NewProject(){
 						<label>Introduction</label><textarea type="text" className="form-control" name='introduction' placeholder="Introduction"></textarea>
 					</div>
 					<div className="input-form">
-						<label>Main Image</label><input type="text" className="form-control" name='imgUrl' placeholder="Image Url"/>
+						<label>Main Image</label><input type="file" className="form-control" name="imgUrl" />
+						{/* <input type="text" className="form-control" name='imgUrl' placeholder="Image Url"/> */}
 					</div>
 					<div className="input-form2">
 						<label>Step Detail</label>

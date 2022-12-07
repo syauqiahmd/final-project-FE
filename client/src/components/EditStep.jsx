@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from "react"
 
-export default function AddStep({name, imgUrl, description}){
+export default function EditStep({name, imgUrl, description}){
 	const [getDescription, setDescription] = useState([{}])
 
 	const [stepForm, setForm] = useState({
@@ -38,9 +38,9 @@ export default function AddStep({name, imgUrl, description}){
 				<label>Description</label>
 				<div style={{width: '100%'}}>
 				{
-					getDescription.map((data, index) => {
+					stepForm.description?.map((data, index) => {
 						return (
-							<textarea type="text" className="form-control mb-4" name='description' placeholder="Description" key={index}></textarea>
+							<textarea type="text" className="form-control mb-4" name='description' placeholder="Description" key={index}>{data}</textarea>
 						)
 					})
 				}

@@ -9,6 +9,7 @@ export default function TopProject() {
   const { projects, loadingProjects } = useSelector((state) => {
     return state.project;
   });
+
   const dispatch = useDispatch();
 
   useEffect(() => {

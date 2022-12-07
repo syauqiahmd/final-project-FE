@@ -22,18 +22,24 @@ export default function Project() {
   return (
     <div className="project">
       <Helmet>
-        <title>Projects List</title>
+        <title>Projects List | DIT-HUB</title>
       </Helmet>
       <div className="container">
-        <div className="d-flex justify-content-end mt-4">
-          <Link className="btn btn-primary">Add Project</Link>
-        </div>
+        {
+          localStorage.getItem('access_token') !== null
+            ? <div className="d-flex justify-content-end mt-4">
+              <Link to="/new-project" className="btn btn-primary">
+                Add Project
+              </Link>
+            </div>
+            : null
+        }
         <h2 className="text-center mt-1 mb-5">Projects</h2>
         <div className="row">
           {projects.map((el, idx) => {
             return (
               <div className="col-lg-3 col-md-6 col-sm-6 col-12" key={idx}>
-                <Card data={el}/>
+                <Card data={el} />
               </div>
             );
           })}

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { instance } from "../../bin/axios";
 
 export const fetchProjects = createAsyncThunk(
-  "projects/fetchSucces",
+  "projects/fetchSuccess",
   async () => {
     const { data } = await instance.get("/public/projects");
     return data;
@@ -10,7 +10,7 @@ export const fetchProjects = createAsyncThunk(
 );
 
 export const fetchProjectById = createAsyncThunk(
-  "projectById/fetchSucces",
+  "projectById/fetchSuccess",
   async (id) => {
     const { data } = await instance.get(`/public/projects/${id}`);
     return data;
