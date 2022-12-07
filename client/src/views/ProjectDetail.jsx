@@ -1,17 +1,14 @@
-import { Link, useLocation, useNavigate } from "react-router-dom"
-import { useSelector, useDispatch } from 'react-redux'
-import Step from "../components/Step"
-import Introduction from '../components/Introduction'
-import Comments from "../components/Comments"
-import { Helmet } from "react-helmet"
+import { useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import Step from "../components/Step";
+import Introduction from "../components/Introduction";
+import Comments from "../components/Comments";
+import { Helmet } from "react-helmet";
+import { useEffect } from "react";
 import { fetchProjectById } from "../store/slices/project";
-import { fetchSteps } from "../store/slices/step";
-import { useEffect } from 'react'
-import { useParams } from "react-router-dom"
 
 export default function ProjectDetail(){
 	const {state} = useLocation()
-	const {id} = useParams()
 	const dispatch = useDispatch();
 
 	const { projectById, loadingProject } = useSelector((state) => {
@@ -22,7 +19,7 @@ export default function ProjectDetail(){
     if (loadingProject) {
       dispatch(fetchProjectById(state.id));
     }
-  }, []);
+  }, [dispatch, loadingProject, state.id]);
 
 	return (
     <div id="project-detail">
