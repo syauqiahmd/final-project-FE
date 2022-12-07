@@ -43,6 +43,12 @@ export default function Navigation(){
 			<span className={collpase + " border-group navbar-collapse"} id="navbarNavAltMarkup">
 				<Link to="/" className="nav-item nav-link">Home</Link>
 				<Link to="/projects" className="nav-item nav-link">Project</Link>
+				{
+					localStorage.getItem('access_token') !== null
+					? <Link to="/new-project" className="nav-item nav-link">New Project</Link>
+					: null
+				}
+				
 				<a href="/#about" className="nav-item nav-link">About</a>
 			</span>
 			<span className={collpase + " navbar-collapse text-center"} id="navbarNavAltMarkup">

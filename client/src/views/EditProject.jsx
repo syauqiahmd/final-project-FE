@@ -63,6 +63,7 @@ export default function EditProject(){
 				<title>Edit Project | DIT-HUB</title>
 			</Helmet>
 			<div className="container">
+				
 				<div id="title">
 					<h1>{project.title}</h1>
 				</div>
@@ -121,7 +122,7 @@ export default function EditProject(){
 									<div key={index} className="mb-4">
 										<EditStep name={data.name} description={data.description} imgUrl={data.imgUrl} />
 										{
-											steps.length > 1
+											project.Steps?.length > 1
 											? <button className="btn btn-danger" name={index}
 												onClick={
 													() => {

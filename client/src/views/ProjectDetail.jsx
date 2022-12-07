@@ -25,13 +25,21 @@ export default function ProjectDetail(){
 		// dispatch(fetchSteps({ projectid: id }));
 	}, [dispatch, id]);
 
-
 	return (
 		<div id="project-detail">
 			<Helmet>
 				<title>{project.title}</title>
 			</Helmet>
 			<div className="container">
+				{
+					localStorage.getItem('access_token') !== null
+					? <div className="d-flex justify-content-end mt-4">
+						<Link to={"/edit-project/" + id} className="btn btn-primary">
+							Edit Project
+						</Link>
+					  </div>
+					: null
+				}
 				<div id="title">
 					<h1>{project.title}</h1>
 					<h5>Written By: {project.User?.username}</h5>
