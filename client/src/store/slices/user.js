@@ -1,70 +1,43 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { instance } from "../../bin/axios";
-// import axios from "axios";
 
-// const initialState = { user: {} };
+export const fetchUser = createAsyncThunk("users/fetchSucces", async (access_token) => {
+  const { data } = await instance({
+    method: "get",
+    url: "/public/profile",
+    headers: {
+      access_token
+    },
+  });
+  return data;
+});
 
-export const postLogin = createAsyncThunk(
-  "comments/fetchSucces",
-  async ({ form }) => {
-    try {
-      const { data } = await instance.get(`/Users?email=${form.email}&password=${form.password}`);
-      return data;
-    } catch (err) {
-      return 'error'
-    }
-    
-  }
-);
+const initialState = { user: {}, isLogin: false };
 
 const userSlice = createSlice({
   name: "user",
-  initialState: {
-    loadingUser: true,
-    user: {},
+  initialState,
+  reducers: {
+    loginStatus(state) {
+      if (localStorage.access_token) {
+        state.isLogin = true;
+      } else {
+        state.isLogin = false;
+      }
+    },
+    logoutUser(state) {
+      state.user = {};
+      state.isLogin = false;
+    },
   },
   extraReducers: (builder) => {
-    builder
-      .addCase(postLogin.pending, (state) => {
-        state.loadingUser = true;
-      })
-      .addCase(postLogin.fulfilled, (state, action) => {
-        state.user = action.payload;
-      });
+    builder.addCase(fetchUser.fulfilled, (state, actions) => {
+      state.user = actions.payload;
+      state.isLogin = true;
+    });
   },
-  // reducers: {
-  //   login: async (state, {payload}) => {
-  //     try {
-  //       // sent pay load to axios
-
-  //       // const { data } = await axios.post(
-  //       //   "http://localhost:4000/users/login",
-  //       //   payload
-  //       // );
-
-  //       // handle success axios
-  //     } catch (err) {
-  //       console.log(err);
-  //       //handle error if login failed
-  //     }
-  //   },
-  //   register: async (state, action) => {
-  //     try {
-  //       // sent pay load to axios
-
-  //       // const { data } = await axios.post(
-  //       //   "http://localhost:4000/users/login",
-  //       //   action.payload
-  //       // );
-        
-  //       // handle success axios
-  //     } catch (err) {
-  //       console.log(err);
-  //       //handle error if login failed
-  //     }
-  //   },
-  // },
 });
 
-export const { login, register } = userSlice.actions;
+export const { loginStatus, logoutUser } = userSlice.actions;
+
 export default userSlice.reducer;

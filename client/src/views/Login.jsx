@@ -1,48 +1,60 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import './login.scss';
+import React, { useState } from "react";
+import "./login.scss";
 import logo from "../assets/logo.png";
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { postLogin } from "../store/slices/user";
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import { useNavigate } from "react-router-dom";
+import { instance } from "../bin/axios";
+import { Alert } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "../store/slices/user";
+import { Form, Row, Col, Button } from "react-bootstrap"
 
-const Login = () => {
-  const { user, loadingUser } = useSelector((state) => {
-		return state.user;
-	});
-	const dispatch = useDispatch();
-  // useEffect(() => {
-	// 	dispatch(postUser({ projectid: id }));
-	// }, []);
+export default function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const [show, setShow] = useState(false);
+  const [errMessage, setErrMessage] = useState("");
   const [formLogin, setFormLogin] = useState({
-    email: '',
-    password: ''
-  })
+    email: "",
+    password: "",
+  });
+
+  const errorHandler = () => {
+    if (show) {
+      return (
+        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+          <p>{errMessage}</p>
+        </Alert>
+      );
+    }
+  };
 
   const emailHandler = (e) => {
     setFormLogin({
       email: e.target.value,
-      password: formLogin.password
-    })
-  }
+      password: formLogin.password,
+    });
+  };
   const passwordHandler = (e) => {
     setFormLogin({
       email: formLogin.email,
-      password: e.target.value
-    })
-  }
+      password: e.target.value,
+    });
+  };
 
-  const submitLogin = (e) => {
-    e.preventDefault()
-    // console.log(formLogin)
-    dispatch(postLogin({ form: formLogin }))
-    console.log(user);
-    // console.log(getdata);
-    if(loadingUser){
-      // localStorage.setItem('access_token', data.access_token)
+  const submitLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await instance.post("/public/login", formLogin);
+      localStorage.setItem("access_token", data.access_token);
+      dispatch(fetchUser())
+      navigate('/')
+    } catch (err) {
+      const { message } = err.response.data;
+      setErrMessage(message)
+      setShow(true)
     }
-  }
+  };
 
   return (
     <>
@@ -58,6 +70,7 @@ const Login = () => {
                 <Form className="rounded p-4 p-sm-3">
                   <Row className="mb-3 text-center">
                     <h1 className="display-6">Login</h1>
+                    {errorHandler()}
                   </Row>
                   <Row className="mb-3">
                     <Form.Group as={Col} controlId="formGridEmail">
@@ -103,5 +116,3 @@ const Login = () => {
     </>
   );
 }
-
-export default Login;
