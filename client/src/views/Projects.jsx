@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import Card from "../components/Card";
 import { Helmet } from "react-helmet";
 import { fetchProjects, resetingProjectById } from "../store/slices/project";
@@ -15,7 +14,7 @@ export default function Project() {
 
   useEffect(() => {
 	dispatch(resetingProjectById())
-	  if(loadingProjects){
+		if(loadingProjects){
 		dispatch(fetchProjects());
 	}
   }, [dispatch, loadingProjects]);

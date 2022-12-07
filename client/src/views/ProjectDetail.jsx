@@ -7,20 +7,21 @@ import { Helmet } from "react-helmet";
 import { useEffect } from "react";
 import { fetchProjectById } from "../store/slices/project";
 
-export default function ProjectDetail() {
-  const { state } = useLocation();
-  const dispatch = useDispatch();
-  const { projectById, loadingProject } = useSelector((state) => {
-    return state.project;
-  });
+export default function ProjectDetail(){
+	const {state} = useLocation()
+	const dispatch = useDispatch();
 
-  useEffect(() => {
+	const { projectById, loadingProject } = useSelector((state) => {
+		return state.project;
+	})
+
+	useEffect(() => {
     if (loadingProject) {
       dispatch(fetchProjectById(state.id));
     }
   }, [dispatch, loadingProject, state.id]);
 
-  return (
+	return (
     <div id="project-detail">
       <Helmet>
         <title>{projectById?.title}</title>

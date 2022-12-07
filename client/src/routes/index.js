@@ -4,7 +4,8 @@ import Home from '../views/Home'
 import Projects from '../views/Projects'
 import ProjectDetail from '../views/ProjectDetail'
 import Login from '../views/Login'
-import Register from "../views/Register";
+import PageNotFound from "../views/PageNotFound";
+import NewProject from "../views/NewProject";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: '/project/:id',
         element: <ProjectDetail />
+      },
+      {
+        path: '/new-project',
+        element: <NewProject />
       }
     ]
   },
@@ -28,10 +33,10 @@ const router = createBrowserRouter([
     path: '/login',
     element: <Login />
   },
-  {
-    path: '/register',
-    element: <Register />
-  }
+	{
+    path: '*',
+    element: <PageNotFound />
+  },
 ]);
 
 export default router;

@@ -1,0 +1,14 @@
+
+.bg-dark{
+  background-color: #474E68 !important;
+}
+
+a {
+  color: white !important;
+}
+p {
+  color: white !important;
+}
+li :hover {
+  color: #FEC260 !important;
+}

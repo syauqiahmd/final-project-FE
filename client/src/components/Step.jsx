@@ -19,7 +19,7 @@ export default function Step(props) {
           </div>
         </div>
         <div className="col-md-6">
-          {props.data.description.map((el, idx) => {
+          {props.data?.description.map((el, idx) => {
             return (
               <ul key={idx}>
                 <li>{el}</li>

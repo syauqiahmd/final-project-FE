@@ -1,58 +1,56 @@
-import React, { useState } from "react";
-import "./login.scss";
-import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Button, Col, Form, Row, Alert } from "react-bootstrap";
 import { instance } from "../bin/axios";
-import { Alert } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { fetchUser } from "../store/slices/user";
-import { Form, Row, Col, Button } from "react-bootstrap"
+import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo-dithub.png"
 
 export default function Login() {
   const navigate = useNavigate();
-  const dispatch = useDispatch()
   const [show, setShow] = useState(false);
-  const [errMessage, setErrMessage] = useState("");
+  const [error, setError] = useState("");
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
   });
 
-  const errorHandler = () => {
-    if (show) {
-      return (
-        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-          <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
-          <p>{errMessage}</p>
-        </Alert>
-      );
-    }
-  };
+  const changeInputHandler = (e) => {
+    const field = e.target.name;
+    const value = e.target.value;
 
-  const emailHandler = (e) => {
-    setFormLogin({
-      email: e.target.value,
-      password: formLogin.password,
-    });
-  };
-  const passwordHandler = (e) => {
-    setFormLogin({
-      email: formLogin.email,
-      password: e.target.value,
-    });
+    const newFormLogin = {
+      ...formLogin,
+    };
+    newFormLogin[field] = value;
+    setFormLogin(newFormLogin);
   };
 
   const submitLogin = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await instance.post("/public/login", formLogin);
+      const { data } = await instance.post("/admin/login", {
+        email: formLogin.email,
+        password: formLogin.password,
+      });
       localStorage.setItem("access_token", data.access_token);
-      dispatch(fetchUser())
-      navigate('/')
+      navigate("/");
     } catch (err) {
-      const { message } = err.response.data;
-      setErrMessage(message)
-      setShow(true)
+      console.log(err);
+      setShow(true);
+      //handle error setState error
+      //kalo bisa toasty bagus
+      setError(err.message)
+    }
+  };
+
+  const showAlert = () => {
+    if (show) {
+      return (
+        //width di atur, ini handle error
+        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>You got an error!</Alert.Heading>
+          <p>{error}</p>
+        </Alert>
+      );
     }
   };
 
@@ -68,9 +66,9 @@ export default function Login() {
             <div className="align-self-center card w-100">
               <div className="card-body">
                 <Form className="rounded p-4 p-sm-3">
+                  <Row>{showAlert()}</Row>
                   <Row className="mb-3 text-center">
                     <h1 className="display-6">Login</h1>
-                    {errorHandler()}
                   </Row>
                   <Row className="mb-3">
                     <Form.Group as={Col} controlId="formGridEmail">
@@ -79,7 +77,7 @@ export default function Login() {
                         name="email"
                         type="email"
                         value={formLogin.email}
-                        onChange={emailHandler}
+                        onChange={changeInputHandler}
                         placeholder="Enter email"
                       />
                     </Form.Group>
@@ -91,7 +89,7 @@ export default function Login() {
                         name="password"
                         type="password"
                         value={formLogin.password}
-                      onChange={passwordHandler}
+                        onChange={changeInputHandler}
                         placeholder="Enter password"
                       />
                     </Form.Group>
