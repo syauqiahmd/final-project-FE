@@ -1,12 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
-// import {} from '../store/actions/actionCreator'
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { fetchProjects, fetchProjectById } from "../store/slices/project";
+import { useEffect, useState } from "react";
+import { fetchProjects } from "../store/slices/project";
 
 import Card from "./Card";
 
 export default function TopProject() {
+  const [newProject] = useState([]);
   const { projects, loadingProjects } = useSelector((state) => {
     return state.project;
   });
@@ -15,19 +14,13 @@ export default function TopProject() {
 
   useEffect(() => {
     dispatch(fetchProjects());
-  }, []);
-  
-  // console.log(projects[2]?);
-
-
-  // console.log(projects);
-
-
-  // useEffect(() => {
-  //   dispatch(fetchProjectById({ id: 1 }));
-  //   console.log(project);
-  //   // use useEffect to get and manage project to see what we get in project, use project.id to watch in param useEffect changes data
-  // }, [dispatch, project.id]);
+    if (projects.length > 3 && newProject.length !== 3) {
+      const temp = projects.slice(1);
+      temp.forEach((el) => {
+        newProject.push(el);
+      });
+    }
+  }, [dispatch, projects.length, newProject.length]);
 
   return (
     <div id="topproject">
@@ -43,15 +36,13 @@ export default function TopProject() {
 
           <div className="container col-lg-12 col-md-6 col-12">
             <div className="row d-flex justify-content-center align-items-center">
-              <div className="col-lg-4 col-12">
-                <Card title={projects[0]?.title} slug={projects[0]?.id} imgUrl={projects[0]?.imgUrl} category={projects[0]?.Tag.name} username={projects[0]?.User.username} />
-              </div>
-              <div className="col-lg-4 col-12">
-                <Card title={projects[1]?.title} slug={projects[1]?.id} imgUrl={projects[1]?.imgUrl} category={projects[1]?.Tag.name} username={projects[1]?.User.username} />
-              </div>
-              <div className="col-lg-4 col-12">
-                <Card title={projects[2]?.title} slug={projects[2]?.id} imgUrl={projects[2]?.imgUrl} category={projects[2]?.Tag.name} username={projects[2]?.User.username} />
-              </div>
+              { !loadingProjects ? newProject.map((el) => {
+                return (
+                  <div className="col-lg-4 col-12" key={el.id}>
+                    <Card data={el}/>
+                  </div>
+                );
+              }): <p>Loading...</p> }
             </div>
           </div>
         </div>

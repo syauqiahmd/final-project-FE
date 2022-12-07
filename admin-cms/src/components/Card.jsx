@@ -13,11 +13,22 @@ export default function Cards(props) {
     <>
       <Card>
         <Card.Body>
-          <Card.Title>Total {props.title}</Card.Title>
-          <Card.Text>
-            There are currently {props.total} {props.title}
+          <Card.Title className="d-flex justify-content-between">
+            <div>
+            Total {props.title}
+            </div>
+            <Button 
+            variant="primary" 
+            className="float-right" 
+            onClick={toggle}>Show {props.title}
+            </Button>
+          </Card.Title>
+          <hr />
+          <Card.Text className="text-dark">
+            <span className="display-6">{props.total} </span>
+            <span>{props.title}</span>
           </Card.Text>
-          <Button variant="primary" onClick={toggle}>Show {props.title}</Button>
+          
         </Card.Body>
       </Card>
     </>

@@ -1,106 +1,118 @@
-import React, { useState, useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import './login.scss';
+import React, { useState } from "react";
+import "./login.scss";
 import logo from "../assets/logo.png";
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-import { postLogin } from "../store/slices/user";
+import { useNavigate } from "react-router-dom";
 import { instance } from "../bin/axios";
-import { Helmet } from 'react-helmet';
+import { Alert } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "../store/slices/user";
+import { Form, Row, Col, Button } from "react-bootstrap"
 
-const Login = () => {
-  const navigate = useNavigate()
-  const { user, loadingUser } = useSelector((state) => {
-		return state.user;
-	});
-	const dispatch = useDispatch();
-  // useEffect(() => {
-	// 	dispatch(postUser({ projectid: id }));
-	// }, []);
+export default function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const [show, setShow] = useState(false);
+  const [errMessage, setErrMessage] = useState("");
   const [formLogin, setFormLogin] = useState({
-    email: '',
-    password: ''
-  })
+    email: "",
+    password: "",
+  });
 
-  const [token, setToken] = useState('')
+  const errorHandler = () => {
+    if (show) {
+      return (
+        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Oh snap! You got an error!</Alert.Heading>
+          <p>{errMessage}</p>
+        </Alert>
+      );
+    }
+  };
 
   const emailHandler = (e) => {
     setFormLogin({
       email: e.target.value,
-      password: formLogin.password
-    })
-  }
+      password: formLogin.password,
+    });
+  };
   const passwordHandler = (e) => {
     setFormLogin({
       email: formLogin.email,
-      password: e.target.value
-    })
-  }
+      password: e.target.value,
+    });
+  };
 
   const submitLogin = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      // // console.log(formLogin)
-      // dispatch(postLogin({ form: formLogin }))
-      // // setFormLogin()
-      // console.log(user);
-      const { data } = await instance.post("/public/login", {
-        email: formLogin.email,
-        password: formLogin.password,
-      });
-      // console.log(data.access_token);
+      const { data } = await instance.post("/public/login", formLogin);
       localStorage.setItem("access_token", data.access_token);
-      navigate("/");
-      // localStorage.setItem("access_token", data.access_token);
-      // navigate("/");
+      dispatch(fetchUser())
+      navigate('/')
     } catch (err) {
-      console.log(err);
+      const { message } = err.response.data;
+      setErrMessage(message)
+      setShow(true)
     }
-    
-    // console.log(getdata);
-    // if(loadingUser){
-    //   localStorage.setItem('access_token', data.access_token)
-    // }
-  }
-
-  // console.log(user);
+  };
 
   return (
-    <div className='text-center vh-100 d-flex justify-content-center align-items-center'>
-      <Helmet>
-				<title>Login | DIT-HUB</title>
-			</Helmet>
-      <main className="col-md-3 col-10 form-signin w-50s pb-5">
-        <form onSubmit={submitLogin}>
-          <Link to="/"><img className="mb-4" src={logo} height="35" /></Link>
-          <Link to="/"><h6 className='mb-4'>Back to Home</h6></Link>
-          <h3 className="h3 mb-3 fw-normal">Please sign in</h3>
-          <div className="form-floating">
-            <input type="email" className="form-control" 
-            name='email' 
-            id="floatingInput"
-            placeholder="name@example.com" 
-            value={formLogin.email}
-            onChange={emailHandler}
-            />
-            <label>Email address</label>
+    <>
+      <div className="container my-5 py-5">
+        <div className="row mt-4">
+          <div className="col-md-6 d-flex">
+            <img className="login__imagek align-self-center" src="https://www.freevector.com/uploads/vector/preview/28488/Businessman_Happy_Accepting_News.jpg"
+              width="100%" alt="" />
           </div>
-          <div className="form-floating mt-2">
-            <input type="password" 
-            className="form-control" 
-            name='password' 
-            id="floatingPassword" 
-            placeholder="Password" 
-            value={formLogin.password}
-            onChange={passwordHandler}
-            />
-            <label>Password</label>
+          <div className="col-md-5 d-flex">
+            <div className="align-self-center card w-100">
+              <div className="card-body">
+                <Form className="rounded p-4 p-sm-3">
+                  <Row className="mb-3 text-center">
+                    <h1 className="display-6">Login</h1>
+                    {errorHandler()}
+                  </Row>
+                  <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridEmail">
+                      <Form.Label>Email</Form.Label>
+                      <Form.Control
+                        name="email"
+                        type="email"
+                        value={formLogin.email}
+                        onChange={emailHandler}
+                        placeholder="Enter email"
+                      />
+                    </Form.Group>
+                  </Row>
+                  <Row className="mb-3">
+                    <Form.Group as={Col} controlId="formGridPassword">
+                      <Form.Label>Password</Form.Label>
+                      <Form.Control
+                        name="password"
+                        type="password"
+                        value={formLogin.password}
+                      onChange={passwordHandler}
+                        placeholder="Enter password"
+                      />
+                    </Form.Group>
+                  </Row>
+
+                  <Button variant="primary" type="submit" onClick={submitLogin}>
+                    Login
+                  </Button>
+                  <Row className="mb-3 mt-5 text-center">
+                  <p className="text-center">
+                    develope by. 
+                    <br/>
+                    <img src={logo} alt="" className="w-50 text-center" srcset="" />
+                  </p>
+                  </Row>
+                </Form>
+              </div>
+            </div>
           </div>
-          <button className="w-100 btn btn-lg btn-primary mt-3" type="submit">Sign in</button>
-        </form>
-      </main>
-    </div>
+        </div>
+      </div>
+    </>
   );
 }
-
-export default Login;

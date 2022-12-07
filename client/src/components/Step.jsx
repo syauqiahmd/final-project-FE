@@ -1,30 +1,33 @@
-import { Link, useNavigate } from "react-router-dom"
-import { useSelector, useDispatch } from 'react-redux'
-import ImgCard from '../assets/card.jpeg'
+import { Col, Row } from "react-bootstrap";
 
-export default function Step({index, name, imgUrl, description}){
-	return (
-		<div className="step">
-			<h3 className="mb-4">#{index} {name}</h3>
-			<div className="row">
-				<div className="col-md-6 mb-4">
-					<div className="img-step">
-						<img src={imgUrl} />
-					</div>
-				</div>
-				<div className="col-md-6 d-flex flex-column justify-content-center">
-					<ul>
-						{description.map(data => {
-							return (
-								<li style={{fontSize: '20px'}}>
-									{data}
-								</li>
-							)
-						})}
-					</ul>
-					
-				</div>
-			</div>
-		</div>
-	)
+export default function Step(props) {
+
+  return (
+    <div className="step">
+      <Row className="justify-content-start">
+        <Col>
+          <h3 className="mb-4">#Step {props.idx + 1}</h3>
+        </Col>
+        <Col>
+          <h2>{props.data?.name}</h2>
+        </Col>
+      </Row>
+      <div className="row">
+        <div className="col-md-6">
+          <div className="img-step">
+            <img src={props.data?.imgUrl} alt="Image Step"/>
+          </div>
+        </div>
+        <div className="col-md-6">
+          {props.data?.description.map((el, idx) => {
+            return (
+              <ul key={idx}>
+                <li>{el}</li>
+              </ul>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 }
