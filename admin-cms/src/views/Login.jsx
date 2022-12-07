@@ -3,6 +3,7 @@ import { Button, Col, Form, Row, Alert } from "react-bootstrap";
 import { instance } from "../bin/axios";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo-dithub.png"
+import { toast } from "react-toastify"
 
 export default function Login() {
   const navigate = useNavigate();
@@ -32,13 +33,13 @@ export default function Login() {
         password: formLogin.password,
       });
       localStorage.setItem("access_token", data.access_token);
+      toast.success("login success")
       navigate("/");
     } catch (err) {
-      console.log(err);
-      setShow(true);
-      //handle error setState error
-      //kalo bisa toasty bagus
-      setError(err.message)
+      // console.log(err);
+      // setShow(true);
+      // setError(err.message)
+      toast.error(err.message)
     }
   };
 
@@ -95,7 +96,7 @@ export default function Login() {
                     </Form.Group>
                   </Row>
 
-                  <Button variant="primary" type="submit" onClick={submitLogin}>
+                  <Button variant="primary" type="submit" className="w-100" onClick={submitLogin}>
                     Login
                   </Button>
                   <Row className="mb-3 mt-5 text-center">

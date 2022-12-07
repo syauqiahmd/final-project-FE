@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import { instance } from "../bin/axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -41,12 +42,16 @@ export default function Register() {
           },
         }
       );
-      console.log("User admin created!");
+      // console.log("User admin created!");
+      toast.success("User admin has been created!")
       //sweetalert atau toasty disini untuk sukses
+
       navigate("/");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
+      toast.error(err.message)
       //handle error ambil dari login
+      
     }
   };
 
