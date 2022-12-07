@@ -7,6 +7,8 @@ import { Alert } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../store/slices/user";
 import { Form, Row, Col, Button } from "react-bootstrap"
+import { Link } from "react-router-dom";
+
 
 export default function Register() {
   const navigate = useNavigate();
@@ -95,8 +97,11 @@ export default function Register() {
       //sweetalert atau toasty disini untuk sukses
       navigate("/");
     } catch (err) {
-      console.log(err);
+    //   console.log(err);
       //handle error ambil dari login
+      const { message } = err.response.data;
+      setErrMessage(message)
+      setShow(true)
     }
   };
 
@@ -170,16 +175,19 @@ export default function Register() {
                   </Row>
 
 
-
+                  <div className="d-flex justify-content-between align-items-center mt-4">
                   <Button variant="primary" className="mt-3" type="submit" onClick={submitReg}>
                     Register
                   </Button>
+                  <Link to="/login" style={{fontSize: '20px'}}>Or login</Link>
+                  </div>
                   <Row className="mb-3 mt-5 text-center">
                   <p className="text-center">
                     develope by. 
                     <br/>
                     <img src={logo} alt="" className="w-50 text-center" srcset="" />
                   </p>
+                  <Link to="/">Back to home</Link>
                   </Row>
                 </Form>
               </div>

@@ -6,7 +6,7 @@ import CustomCarousel from "../components/CustomCarousel";
 export default function Home(){
 
 	return (
-		<>
+        <div className="home">
         <Helmet>
           <title>DIT-HUB | Do It Together</title>
         </Helmet>
@@ -22,6 +22,6 @@ export default function Home(){
         <Slideshow />
         {/* <TopProject /> */}
         <About />
-    </>
+        </div>
 	)
 }
