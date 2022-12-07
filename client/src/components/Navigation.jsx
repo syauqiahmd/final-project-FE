@@ -31,7 +31,7 @@ export default function Navigation(){
 		}
 	}
 	return (
-		<nav className="navbar navbar-expand-md d-flex justify-content-around align-items-center">
+		<nav className="navbar navbar-expand-md d-flex justify-content-around align-items-center fixed-top">
 			<span>
 			<Link to="/"><img src={ImgLogo} /></Link>
 			</span>
@@ -56,7 +56,7 @@ export default function Navigation(){
 					localStorage.getItem('access_token') === null
 					?
 					<>
-					<Link to="/" className="btn btn-outline-dark">Register</Link>
+					<Link to="/register" className="btn btn-outline-dark">Register</Link>
 					<Link to="/login" className="btn btn-outline-dark">Login</Link>
 					</>
 					:

@@ -57,6 +57,9 @@ export default function Register() {
           <Row className="mb-3">
             <h1 className="display-6">Register</h1>
           </Row>
+
+
+          
           <Row className="mb-3">
             <Form.Group as={Col} controlId="formGridFN">
               <Form.Label className="text-start">Full Name</Form.Label>
