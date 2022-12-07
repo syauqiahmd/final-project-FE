@@ -8,7 +8,6 @@ export default function About(){
 				<h3>About</h3>
 				<p className="text-center col-md-6">DIT-HUB will be an app for users to share their DIY Projects with each other. Projects can be in a form of Guides. User can comment on each Project and also can save their favorite projects from other users and it will be accessible on their individual Favorite tabs.</p>
 			</div>
-
 		</div>
 	)
 }

@@ -15,11 +15,8 @@ export default function Navigation(){
 	const access_token = localStorage.getItem('access_token')
 
 	useEffect(() => {
-		// console.log(access_token);
 		dispatch(fetchUser({access_token}));
 	}, []);
-
-	// console.log(user, '<---data user');
 
 	const appear = (e) => {
 		e.preventDefault()
