@@ -102,7 +102,7 @@ export default function Login() {
                     <Button variant="primary" type="submit" onClick={submitLogin}>
                       Login
                     </Button>
-                    <Link to="/register" style={{fontSize: '20px'}}>Or register</Link>
+                    <Link to="/register" style={{fontSize: '20px'}}>register</Link>
                   </div>
                   
                   <Row className="mb-3 mt-5 text-center">
