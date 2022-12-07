@@ -3,6 +3,8 @@ import Slideshow from "../components/Slideshow";
 import TopProject from "../components/TopProject";
 import About from "../components/About";
 import CustomCarousel from "../components/CustomCarousel";
+import SectionStep from "../components/SectionStep"
+
 export default function Home(){
 
 	return (
@@ -21,6 +23,7 @@ export default function Home(){
         </div>
         <Slideshow />
         {/* <TopProject /> */}
+        <SectionStep />
         <About />
         </div>
 	)
