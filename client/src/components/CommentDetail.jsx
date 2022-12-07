@@ -23,11 +23,9 @@ export default function CommentDetail(props) {
         },
       });
       socket.emit("fetch-comment", props.data.ProjectId, props.limit);
-      //handle toasty success
       toast.success("comment deleted")
     } catch (err) {
       toast.error(err.response.data)
-      //handle toasty failed
     }
   };
 

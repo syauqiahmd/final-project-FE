@@ -14,12 +14,8 @@ export default function Introduction(props) {
           access_token: localStorage.access_token,
         },
       });
-      //   console.log(data);
-      // handler toastfy success
       toast.success("success add to favorite")
     } catch (err) {
-      console.log(err);
-      // handler toastfy
       toast.error(err.response.data)
     }
   };
@@ -33,12 +29,8 @@ export default function Introduction(props) {
           access_token: localStorage.access_token,
         },
       });
-      // console.log(data);
-      // handler toastfy success
       toast.success("report successful")
     } catch (err) {
-      console.log(err);
-      // handler toastfy
       toast.error(err.response.data)
     }
   };

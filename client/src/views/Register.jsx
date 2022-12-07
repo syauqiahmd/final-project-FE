@@ -96,12 +96,9 @@ export default function Register() {
           },
         }
       );
-      //sweetalert atau toasty disini untuk sukses
       toast.success("user register success")
       navigate("/login");
     } catch (err) {
-    //   console.log(err);
-      //handle error ambil dari login
       const { message } = err.response.data;
       toast.error(message)
 
