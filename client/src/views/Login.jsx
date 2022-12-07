@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./login.scss";
+// import "./login.scss";
 import logo from "../assets/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { instance } from "../bin/axios";

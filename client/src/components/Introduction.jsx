@@ -16,7 +16,7 @@ export default function Introduction(props) {
       });
       toast.success("success add to favorite")
     } catch (err) {
-      toast.error(err.response.data)
+      toast.error(err.response.data.message)
     }
   };
 
@@ -31,7 +31,7 @@ export default function Introduction(props) {
       });
       toast.success("report successful")
     } catch (err) {
-      toast.error(err.response.data)
+      toast.error(err.response.data.message)
     }
   };
 
