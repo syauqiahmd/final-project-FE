@@ -38,7 +38,7 @@ export default function Project() {
         <div className="row">
           {projects.map((el, idx) => {
             return (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-12" key={idx}>
+              <div className="col-lg-3 col-md-6 col-sm-6 col-12 mb-4" key={idx}>
                 <Card data={el} />
               </div>
             );
