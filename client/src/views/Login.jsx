@@ -7,6 +7,7 @@ import { Alert } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../store/slices/user";
 import { Form, Row, Col, Button } from "react-bootstrap"
+import { toast } from 'react-toastify';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -48,11 +49,11 @@ export default function Login() {
       const { data } = await instance.post("/public/login", formLogin);
       localStorage.setItem("access_token", data.access_token);
       dispatch(fetchUser())
+      toast.success("login success");
       navigate('/')
     } catch (err) {
       const { message } = err.response.data;
-      setErrMessage(message)
-      setShow(true)
+      toast.error(message);
     }
   };
 
