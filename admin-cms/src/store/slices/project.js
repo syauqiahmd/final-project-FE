@@ -4,7 +4,12 @@ import { instance } from "../../bin/axios";
 export const fetchProjects = createAsyncThunk(
   "projects/fetchSucces",
   async () => {
-    const { data } = await instance.get("/public/projects");
+    const { data } = await instance.get("/admin/projects", {
+      headers: {
+        access_token: localStorage.getItem("access_token")
+      }
+    });
+    console.log(data);
     return data;
   }
 );
@@ -12,7 +17,11 @@ export const fetchProjects = createAsyncThunk(
 export const fetchProjectById = createAsyncThunk(
   "projectById/fetchSucces",
   async ({ id }) => {
-    const { data } = await instance.get(`/public/projects/${id}`);
+    const { data } = await instance.get(`/admin/projects/${id}`, {
+      headers: {
+        access_token: localStorage.getItem("access_token")
+      }
+    });
     return data;
   }
 );

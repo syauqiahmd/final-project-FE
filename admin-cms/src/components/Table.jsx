@@ -8,7 +8,8 @@ export default function Tables(props) {
       <tr>
         <th>No.</th>
         <th>Title</th>
-        <th>Introduction</th>
+        <th>User</th>
+        <th>Tag</th>
         <th>Difficulty</th>
         <th>Status</th>
       </tr>

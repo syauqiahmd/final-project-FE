@@ -10,5 +10,6 @@ p {
   color: white !important;
 }
 li :hover {
-  color: #FEC260 !important;
+  cursor: pointer;
+  color: rgb(255, 130, 108) !important;
 }

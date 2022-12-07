@@ -8,12 +8,13 @@ export default function Report() {
   const dispatch = useDispatch();
 
   const { reports } = useSelector((state) => {
-    return state.report;
+    return state.report.reports;
   });
 
   useEffect(() => {
     dispatch(fetchReports());
-  }, [reports[0]?.id]);
+  }, [dispatch]);
+
   return (
     <>
       <h1 className="display-6">Reports</h1>
@@ -23,13 +24,13 @@ export default function Report() {
             <tr>
               <th>No.</th>
               <th>Project</th>
-              <th>User</th>
+              <th>Report Count</th>
               <th>Link</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
-            {reports.map((el, index) => {
+            {reports?.map((el, index) => {
               return <TableBodyReport data={el} index={index} key={index}/>;
             })}
           </tbody>
