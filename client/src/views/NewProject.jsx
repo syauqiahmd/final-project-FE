@@ -5,40 +5,68 @@ import { Helmet } from "react-helmet";
 import AddStep from "../components/AddStep";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fetchTags } from "../store/slices/tag";
+import { instance } from "../bin/axios";
 
 export default function NewProject() {
   const dispatch = useDispatch();
   const { tags } = useSelector((state) => {
     return state.tag;
   });
-  const [steps, setStep] = useState([["1"]]);
+  const [steps, setStep] = useState([{}]);
   const [tagId, setTagId] = useState("");
   const [difficultySellect, setDifficultySellect] = useState("");
   const [titleProject, setTitleProject] = useState("");
   const [introductionProject, setIntroductionProject] = useState("");
   const [nameStep, setNameStep] = useState([]);
-  const [description, setDescription] = useState([[""]]);
+  const [description, setDescription] = useState([""]);
   const [mainImage, setmainImage] = useState({});
   const [images, setImages] = useState([{}]);
 
   const addStep = (e) => {
     e.preventDefault();
-	const temp = [...steps];
-
-    temp.push("");
-    setStep(temp);
-	console.log(steps)
+    setStep([...steps, {}]);
   };
 
   useEffect(() => {
     dispatch(fetchTags());
   }, []);
 
-  const handlerSubmit = (e) => {
-	e.preventDefault();
-	console.log({titleProject, introductionProject, difficultySellect, tagId, nameStep, description})
-	console.log({mainImage, images})
-  }
+  const handlerSubmit = async (e) => {
+    e.preventDefault();
+    let formData = new FormData();
+    formData.append("title", titleProject);
+    formData.append("introduction", introductionProject);
+    formData.append("difficulty", difficultySellect);
+    formData.append("TagId", tagId);
+    nameStep.forEach((el, idx) => {
+      formData.append(`Names[${idx}]`, el);
+    });
+
+    description.forEach((el, idxL) => {
+      formData.append(`Description[${idxL}][${0}]`, el);
+    });
+
+    formData.append("mainImage", mainImage);
+
+    images.forEach((el) => {
+      formData.append("images", el);
+    });
+
+    try {
+      await instance({
+        method: "post",
+        url: "/public/posts/project",
+        headers: {
+          access_token: localStorage.access_token,
+          "Content-Type": "multipart/form-data",
+        },
+        data: formData,
+      });
+    } catch (err) {
+      console.log(err);
+      //handle toast
+    }
+  };
 
   return (
     <div id="new-project">
@@ -120,7 +148,7 @@ export default function NewProject() {
             <div className="input-form2">
               <label>Step Detail</label>
               <div style={{ width: "100%" }}>
-                {steps.map((_, index) => {
+                {steps?.map((_, index) => {
                   return (
                     <div key={index} className="mb-4">
                       <AddStep
@@ -129,15 +157,17 @@ export default function NewProject() {
                         setNameStep={setNameStep}
                         description={description}
                         setDescription={setDescription}
-                        image={images}
-                        setImage={setImages}
+                        images={images}
+                        setImages={setImages}
                       />
                       {steps.length > 1 ? (
                         <button
                           className="btn btn-danger"
                           name={index}
                           onClick={() => {
-                            setStep(steps.filter((_, i) => i !== index));
+                            const temp = [...steps];
+                            temp.splice(steps.length - 1, 1);
+                            setStep(temp);
                           }}>
                           <FontAwesomeIcon icon="fa-solid fa-trash-can" />
                         </button>
