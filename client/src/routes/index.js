@@ -7,7 +7,7 @@ import Login from '../views/Login'
 import PageNotFound from "../views/PageNotFound";
 import NewProject from "../views/NewProject";
 import EditProject from "../views/EditProject";
-import Register from '../views/Register'
+import FavProject from "../views/FavProject";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +25,6 @@ const router = createBrowserRouter([
         path: '/project/:id',
         element: <ProjectDetail />
       },
-      
       {
         path: '/new-project',
         loader: () => {
@@ -37,6 +36,16 @@ const router = createBrowserRouter([
         element: <NewProject />
       },
       {
+        path: '/favorite-project',
+        loader: () => {
+          if(!localStorage.getItem('access_token')){
+            return redirect('/login')
+          }
+          return null
+        },
+        element: <FavProject />
+      },
+      {
         path: '/edit-project/:id',
         loader: () => {
           if(!localStorage.getItem('access_token')){
@@ -45,7 +54,7 @@ const router = createBrowserRouter([
           return null
         },
         element: <EditProject />
-      }
+      },
     ]
   },
   {
@@ -57,16 +66,6 @@ const router = createBrowserRouter([
       return null
     },
     element: <Login />
-  },
-  {
-    path: '/register',
-    loader: () => {
-      if(localStorage.getItem('access_token')){
-        return redirect('/')
-      }
-      return null
-    },
-    element: <Register />
   },
 	{
     path: '*',

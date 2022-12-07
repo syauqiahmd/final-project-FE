@@ -17,13 +17,26 @@ export const fetchProjectById = createAsyncThunk(
   }
 );
 
+export const fetchProjectByFavorite = createAsyncThunk(
+  "projectByFavorite/fetchSuccess",
+  async (userid, access_token) => {
+    console.log(access_token, userid);
+    const { data } = await instance.get(`/public/favorites/${userid}`, {
+      headers: { access_token },
+    });
+    return data;
+  }
+);
+
 const projectSlice = createSlice({
   name: "project",
   initialState: {
     loadingProjects: true,
     loadingProject: true,
+    loadingProjectByFavorite: true,
     projects: [],
     projectById: {},
+    projectByFavorite: [],
   },
   reducers: {
     resetingProjectById(state) {
@@ -48,6 +61,15 @@ const projectSlice = createSlice({
       .addCase(fetchProjectById.fulfilled, (state, action) => {
         state.loadingProject = false;
         state.projectById = action.payload;
+      });
+
+    builder
+      .addCase(fetchProjectByFavorite.pending, (state) => {
+        state.loadingProjectByFavorite = true;
+      })
+      .addCase(fetchProjectByFavorite.fulfilled, (state, action) => {
+        state.loadingProjectByFavorite = false;
+        state.projectByFavorite = action.payload;
       });
   },
 });
