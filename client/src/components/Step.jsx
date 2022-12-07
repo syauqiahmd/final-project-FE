@@ -8,9 +8,6 @@ export default function Step(props) {
         <Col>
           <h3 className="mb-4">#Step {props.idx + 1}</h3>
         </Col>
-        <Col>
-          <h2>{props.data?.name}</h2>
-        </Col>
       </Row>
       <div className="row">
         <div className="col-md-6">
