@@ -48,7 +48,7 @@ export default function Login() {
     try {
       const { data } = await instance.post("/public/login", formLogin);
       localStorage.setItem("access_token", data.access_token);
-      dispatch(fetchUser())
+      dispatch(fetchUser(data.access_token))
       toast.success("login success");
       navigate('/')
     } catch (err) {
