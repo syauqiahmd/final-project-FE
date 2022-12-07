@@ -19,12 +19,11 @@ export const fetchProjectById = createAsyncThunk(
 
 export const fetchProjectByFavorite = createAsyncThunk(
   "projectByFavorite/fetchSuccess",
-  async (userid, access_token) => {
-    console.log(access_token, userid);
-    const { data } = await instance.get(`/public/favorites/${userid}`, {
-      headers: { access_token },
+  async (payload) => {
+    const { data } = await instance.get(`/public/favorites/${payload.userid}`, {
+      headers: { "access_token": payload.access_token },
     });
-    return data;
+    return data.favourites;
   }
 );
 

@@ -17,9 +17,9 @@ export default function ProjectDetail(){
 
 	useEffect(() => {
     if (loadingProject) {
-      dispatch(fetchProjectById(state.id));
+      dispatch(fetchProjectById(state?.id));
     }
-  }, [dispatch, loadingProject, state.id]);
+  }, [dispatch, loadingProject]);
 
 	return (
     <div id="project-detail">
@@ -35,7 +35,7 @@ export default function ProjectDetail(){
         { !loadingProject ? projectById?.Steps.map((el, idx) => {
           return <Step key={el.id} data={el} idx={idx} />;
         }): <p>Loading...</p> }
-        <Comments projectid={state.id} />
+        <Comments projectid={state?.id} />
       </div>
     </div>
   );

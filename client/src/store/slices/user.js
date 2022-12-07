@@ -6,7 +6,7 @@ export const fetchUser = createAsyncThunk("users/fetchSuccess", async (access_to
     method: "get",
     url: "/public/profile",
     headers: {
-      access_token
+      "access_token": access_token
     },
   });
   return data;

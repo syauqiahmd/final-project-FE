@@ -8,6 +8,7 @@ import PageNotFound from "../views/PageNotFound";
 import NewProject from "../views/NewProject";
 import EditProject from "../views/EditProject";
 import FavProject from "../views/FavProject";
+import Register from "../views/Register";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,16 @@ const router = createBrowserRouter([
       return null
     },
     element: <Login />
+  },
+  {
+    path: '/register',
+    loader: () => {
+      if(localStorage.getItem('access_token')){
+        return redirect('/')
+      }
+      return null
+    },
+    element: <Register />
   },
 	{
     path: '*',

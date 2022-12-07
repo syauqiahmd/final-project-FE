@@ -10,6 +10,7 @@ export default function Layout() {
 
   useEffect(() => {
     if (localStorage.access_token) {
+      
       dispatch(fetchUser(localStorage.access_token));
     }
   }, []);

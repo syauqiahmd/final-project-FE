@@ -12,10 +12,8 @@ export default function Navigation() {
   const [collpase, setCollapse] = useState("collapse");
   const navigate = useNavigate();
 
-  const access_token = localStorage.getItem("access_token");
-
   useEffect(() => {
-    dispatch(fetchUser({ access_token }));
+    dispatch(fetchUser(localStorage.access_token));
   }, []);
 
   const appear = (e) => {
@@ -68,9 +66,9 @@ export default function Navigation() {
           </>
         ) : null}
 
-        <a href="/#about" className="nav-item nav-link">
+        <Link to="/#about" className="nav-item nav-link">
           About
-        </a>
+        </Link>
       </span>
       <span
         className={collpase + " navbar-collapse text-center"}
@@ -90,8 +88,8 @@ export default function Navigation() {
             Hi {user.username}
             <Link
               onClick={() => {
-                localStorage.removeItem("access_token");
                 navigate("/");
+                localStorage.removeItem("access_token");
               }}
               className="btn btn-outline-danger"
             >

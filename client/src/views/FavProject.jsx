@@ -5,13 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "../components/Card";
 import { Helmet } from "react-helmet";
 import { useEffect } from "react";
+import { fetchUser } from "../store/slices/user";
 
 const FavProject = () => {
-  const { projectByFavorite, loadingProjectByFavorite } = useSelector(
-    (state) => {
-      return state.project;
-    }
-  );
+  const { projectByFavorite, loadingProjectByFavorite } = useSelector((state) => {
+    return state.project;
+  });
   const { user } = useSelector((state) => {
     return state.user;
   });
@@ -19,10 +18,15 @@ const FavProject = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (loadingProjectByFavorite) {
-      dispatch(fetchProjectByFavorite(user.id, localStorage.access_token));
-    }
-  }, [dispatch, loadingProjectByFavorite]);
+    
+      dispatch(fetchUser(localStorage.access_token));
+      dispatch(
+        fetchProjectByFavorite({
+          userid: user.id,
+          access_token: localStorage.access_token,
+        })
+      );
+  }, [dispatch, user.id]);
   return (
     <div className="project">
       <Helmet>
@@ -31,13 +35,19 @@ const FavProject = () => {
       <div className="container">
         <h2 className="text-center mt-1 mb-5">Projects</h2>
         <div className="row">
-          {projectByFavorite.map((el, idx) => {
-            return (
-              <div className="col-lg-3 col-md-6 col-sm-6 col-12 mb-4" key={idx}>
-                <Card data={el} />
-              </div>
-            );
-          })}
+          {loadingProjectByFavorite ? (
+            <p>Loading...</p>
+          ) : (
+            projectByFavorite.map((el, idx) => {
+              return (
+                <div
+                  className="col-lg-3 col-md-6 col-sm-6 col-12 mb-4"
+                  key={idx}>
+                  <Card data={el.Project} />
+                </div>
+              );
+            })
+          )}
         </div>
         <div className="d-flex justify-content-end mt-4">
           <Link to="">
