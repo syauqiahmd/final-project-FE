@@ -96,7 +96,7 @@ export default function Login() {
                     </Form.Group>
                   </Row>
 
-                  <Button variant="primary" type="submit" onClick={submitLogin}>
+                  <Button variant="primary" type="submit" className="w-100" onClick={submitLogin}>
                     Login
                   </Button>
                   <Row className="mb-3 mt-5 text-center">
