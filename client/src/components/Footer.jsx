@@ -9,7 +9,6 @@ export default function Footer(){
 		<footer id="footer">
 			<div className="container d-flex flex-column justify-content-center align-items-center">
 				<img src={ImgLogoWhite} className="mb-4" />
-				<span>+62 xxx-xxxx-xxxx</span>
 				<span className="mb-4">Indonesia</span>
 				<span className="icon-groups d-flex justify-content-between">
 					<FontAwesomeIcon icon="fa-brands fa-facebook" />
