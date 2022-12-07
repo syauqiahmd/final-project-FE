@@ -52,7 +52,8 @@
       "imgUrl": "https://guide-images.cdn.ifixit.com/igi/YeTWVlSHJowO1PG1.medium",
       "introduction": "Repairing a rip in vinyl furniture is a short, simple, and low-cost fit that can be accomplished in the home. Vinyl furniture can rip for a number of reasons, such as a sharp object or a pet scratching the material. It is best to repair a tear as soon as possible to avoid the tear becoming larger.",
       "difficulty": "5",
-      "TagId": 2
+      "TagId": 2,
+      "status": "Active"
     },
     {
       "id": 2,
@@ -62,7 +63,8 @@
       "imgUrl": "https://guide-images.cdn.ifixit.com/igi/svRm1lMCfHrn1g5a.medium",
       "introduction": "This guide will walk you through all the steps to correctly assemble the Free Wheelchair Mission GEN 1 wheelchair. But first, familiarize yourself with tools you will be using with the Free Wheelchair Mission Tools Maintenance Guide.",
       "difficulty": "2",
-      "TagId": 1
+      "TagId": 1,
+      "status": "Archived"
     },
     {
       "id": 3,
@@ -72,7 +74,8 @@
       "imgUrl": "https://guide-images.cdn.ifixit.com/igi/svRm1lMCfHrn1g5a.medium",
       "introduction": "In case of broken lugs or screw holders, the two housing parts can be glued together. It is important to check that you have assembled everything correctly before gluing.",
       "difficulty": "3",
-      "TagId": 3
+      "TagId": 3,
+      "status": "Active"
     }
   ],
   "Steps": [
@@ -80,7 +83,9 @@
       "id": 1,
       "ProjectId": "3",
       "name": "Removing the scrapers",
-      "description": ["Removing the five (TR15) scrapers"],
+      "description": [
+        "Removing the five (TR15) scrapers"
+      ],
       "imgUrl": "https://guide-images.cdn.ifixit.com/igi/jv1LnAQp5GMHmsX1.medium"
     },
     {
@@ -90,14 +95,14 @@
       "description": [
         "Removing the first part of the housing",
         "Removing the rotary wheel, important pay attention to the black component so that the nose in does not break off (green mark).",
-        "Removing the second part of the housing." 
+        "Removing the second part of the housing."
       ],
       "imgUrl": "https://guide-images.cdn.ifixit.com/igi/wc3hMveQVAHVpsRL.medium"
     },
     {
       "id": 3,
       "ProjectId": "3",
-      "name": "Assembly of the housing I" ,
+      "name": "Assembly of the housing I",
       "description": [
         "Make sure that the green marked elements are in the right place in both housings, the red element is only available once.",
         "Make sure that the two strands run as marked in blue.",
