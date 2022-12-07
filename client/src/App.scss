@@ -163,10 +163,11 @@
 #comments {
     .comment-box, .comment-detail {
         background-color: #fff;
+        border-radius: 10px;
     }
     textarea {
         width: 100%;
-    }   
+    }
 }
 
 #new-project {
