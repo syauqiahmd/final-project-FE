@@ -6,8 +6,10 @@ import AddStep from "../components/AddStep";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fetchTags } from "../store/slices/tag";
 import { instance } from "../bin/axios";
+import { toast } from "react-toastify";
 
 export default function NewProject() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { tags } = useSelector((state) => {
     return state.tag;
@@ -62,9 +64,19 @@ export default function NewProject() {
         },
         data: formData,
       });
+      setTitleProject('')
+      setIntroductionProject('')
+      setDifficultySellect("")
+      setTagId("")
+      setNameStep([])
+      setDescription([''])
+      setmainImage({})
+      setImages([{}])
+      toast.success("add new project success!!!");
+      navigate('/projects')
     } catch (err) {
       console.log(err);
-      //handle toast
+      toast.error(err.response.data.message)
     }
   };
 

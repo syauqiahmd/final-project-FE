@@ -2,6 +2,7 @@ import { instance } from "../bin/axios";
 import { Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import socket from "../bin/socketio";
+import { toast } from 'react-toastify';
 
 export default function CommentDetail(props) {
   function getDate() {
@@ -22,31 +23,39 @@ export default function CommentDetail(props) {
         },
       });
       socket.emit("fetch-comment", props.data.ProjectId, props.limit);
-      //handle toasty success
+      toast.success("comment deleted")
     } catch (err) {
-      console.log(err);
-      //handle toasty failed
+      toast.error(err.response.data)
     }
   };
 
   return (
-    <div className="comment-detail mb-4 p-4">
+    <div className="comment-detail mb-2 p-4">
       <Row>
         <Col>
-          <div className="date mb-2">{getDate()}</div>
-          <div style={{ fontSize: "20px" }} className="mb-2">
-            {props.data.comment}
+          <div className="mb-2 d-flex justify-content-between">
+            <div className="text-muted">
+            <FontAwesomeIcon icon="fa-solid fa-user" /> <b>{props.data.User.username}</b>
+            </div>
+            <div>
+            {getDate()}
+            </div>
           </div>
-          <div>{props.data.User.username}</div>
-        </Col>
-        <Col>
-          {localStorage.access_token ? (
-            <Button variant="danger" onClick={handleDeleteComment}>
-              <FontAwesomeIcon icon="fa-solid fa-trash" />
-            </Button>
-          ) : (
-            ""
-          )}
+          <div style={{ fontSize: "20px" }} className="mb-2 d-flex justify-content-between">
+            <div>
+            {props.data.comment}
+            </div>
+            <div className="ms-5">
+            {localStorage.access_token ? (
+              <Button variant="danger" onClick={handleDeleteComment}>
+                <FontAwesomeIcon icon="fa-solid fa-trash" />
+              </Button>
+            ) : (
+              ""
+            )}
+            </div>
+          </div>
+          <div></div>
         </Col>
       </Row>
     </div>

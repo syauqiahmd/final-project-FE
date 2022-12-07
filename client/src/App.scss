@@ -26,6 +26,7 @@
 }
 
 .navbar {
+    background-color: #fff;
     .navbar-collapse {
         flex-grow: 0;
     }
@@ -48,6 +49,17 @@
     }
     -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.31); 
     box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.31);
+}
+
+.layout {
+    padding-top: 100px;
+    background-color: #eee;
+}
+
+.layout .home {
+    margin-top: -100px;
+    padding-top: 120px;
+    background-color: #fff;
 }
 
 #bannerCustom {
@@ -163,10 +175,11 @@
 #comments {
     .comment-box, .comment-detail {
         background-color: #fff;
+        border-radius: 10px;
     }
     textarea {
         width: 100%;
-    }   
+    }
 }
 
 #new-project {
@@ -201,3 +214,4 @@
         }
     }
 }
+

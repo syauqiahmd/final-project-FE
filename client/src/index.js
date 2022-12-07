@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons'
+import 'react-toastify/dist/ReactToastify.css';
 
 library.add(fas, fab)
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -10,7 +10,7 @@ export default function Slideshow(){
 			<div className="container">
 				<div className="row">
 					<div className="col-lg-5 col-md-6 col-12 left">
-						<h1>Welcome to <code>DITHUB</code></h1>
+						<h1 className="display-4">Welcome to <code>DITHUB</code></h1>
 						<p>Our interest  primarily in platforms that help people share their life hack or DIY Project</p>
 						<Link to='/projects' className="btn btn-lg btn-primary">Browse Projects</Link>
 					</div>
