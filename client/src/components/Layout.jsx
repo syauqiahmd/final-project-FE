@@ -16,7 +16,9 @@ export default function Layout() {
   return (
     <>
       <Navigation />
-      <Outlet />
+      <div className="layout">
+        <Outlet  />
+      </div>
       <Footer />
     </>
   );

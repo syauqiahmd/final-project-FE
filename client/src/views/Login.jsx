@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./login.scss";
 import logo from "../assets/logo.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { instance } from "../bin/axios";
 import { Alert } from "react-bootstrap";
 import { useDispatch } from "react-redux";
@@ -98,15 +98,20 @@ export default function Login() {
                     </Form.Group>
                   </Row>
 
-                  <Button variant="primary" type="submit" onClick={submitLogin}>
-                    Login
-                  </Button>
+                  <div className="d-flex justify-content-between align-items-center mt-4">
+                    <Button variant="primary" type="submit" onClick={submitLogin}>
+                      Login
+                    </Button>
+                    <Link to="/register" style={{fontSize: '20px'}}>Or register</Link>
+                  </div>
+                  
                   <Row className="mb-3 mt-5 text-center">
                   <p className="text-center">
                     develope by. 
                     <br/>
                     <img src={logo} alt="" className="w-50 text-center" srcset="" />
                   </p>
+                  <Link to="/">Back to home</Link>
                   </Row>
                 </Form>
               </div>
