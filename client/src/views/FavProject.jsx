@@ -43,7 +43,7 @@ const FavProject = () => {
                 <div
                   className="col-lg-3 col-md-6 col-sm-6 col-12 mb-4"
                   key={idx}>
-                  <Card data={el.Project} />
+                  <Card data={el.Project}/>
                 </div>
               );
             })
