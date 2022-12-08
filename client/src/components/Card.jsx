@@ -17,7 +17,7 @@ export default function Card(props) {
     try {
       await instance({
         method: "delete",
-        url: `/public/favorites/${props.data.id}`,
+        url: `/public/favorites/${props.favid}`,
         headers: {
           "access_token" : localStorage.access_token
         }
