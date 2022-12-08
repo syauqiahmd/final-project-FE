@@ -1,7 +1,7 @@
-import { Table } from "react-bootstrap";
+import { Table, Button } from "react-bootstrap";
 import TableBodyReport from "../components/TableBodyReport";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { fetchReports } from "../store/slices/report";
 
 export default function Report() {
@@ -11,6 +11,10 @@ export default function Report() {
     return state.report.reports;
   });
 
+  function refresh() {
+    dispatch(fetchReports());
+  }
+
   useEffect(() => {
     dispatch(fetchReports());
   }, [dispatch]);
@@ -18,6 +22,9 @@ export default function Report() {
   return (
     <>
       <h1 className="display-6">Reports</h1>
+      <Button variant="primary" className="float-right mb-2" onClick={refresh}>
+        Refresh
+      </Button>
       <div>
         <Table striped bordered hover>
           <thead>
@@ -31,7 +38,7 @@ export default function Report() {
           </thead>
           <tbody>
             {reports?.map((el, index) => {
-              return <TableBodyReport data={el} index={index} key={index}/>;
+              return <TableBodyReport data={el} index={index} key={index} />;
             })}
           </tbody>
         </Table>
