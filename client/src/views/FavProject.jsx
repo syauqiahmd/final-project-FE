@@ -33,7 +33,7 @@ const FavProject = () => {
         <title>Projects List | DIT-HUB</title>
       </Helmet>
       <div className="container">
-        <h2 className="text-center mt-1 mb-5">Projects</h2>
+        <h2 className="text-center mt-1 mb-5">My Favourite Projects</h2>
         <div className="row">
           {loadingProjectByFavorite ? (
             <p>Loading...</p>
