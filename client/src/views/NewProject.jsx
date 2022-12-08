@@ -88,6 +88,9 @@ export default function NewProject() {
       <div className="container">
         <div id="title">
           <h1>New Project</h1>
+          <div className="text-muted">
+          <p><FontAwesomeIcon icon="fa-solid fa-circle-exclamation" /> Any created Projects will be moderated by our Admins</p>
+          </div>
         </div>
         <form onSubmit={handlerSubmit}>
           <div className="mb-5 form">
