@@ -17,7 +17,7 @@ export default function SectionStep() {
             <h1 className="card-title pricing-card-title">#1</h1>
             <h4 className="my-4 fw-normal">Sign up for free</h4>
             Create an account Join the millions of people who trust <code>DITHUB</code> to share and search DIY projects.
-            <Link to="/register" className="w-100 btn btn-lg btn-outline-primary mt-4">Sign up for free</Link>
+            <Link to="/register" className="w-100 btn btn-lg btn-outline-danger mt-4">Sign up for free</Link>
           </div>
         </div>
       </div>
