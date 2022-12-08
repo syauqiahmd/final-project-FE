@@ -21,10 +21,12 @@ export default function Report() {
 
   return (
     <>
-      <h1 className="display-6">Reports</h1>
-      <Button variant="primary" className="float-right mb-2" onClick={refresh}>
-        Refresh
-      </Button>
+      <div className="d-flex justify-content-between">
+        <h1 className="display-6">Reports</h1>
+        <Button variant="primary" className="float-right mb-2" onClick={refresh}>
+          Refresh
+        </Button>
+      </div>
       <div>
         <Table striped bordered hover>
           <thead>
