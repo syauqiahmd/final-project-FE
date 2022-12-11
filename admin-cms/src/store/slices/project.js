@@ -9,7 +9,6 @@ export const fetchProjects = createAsyncThunk(
         access_token: localStorage.getItem("access_token")
       }
     });
-    console.log(data);
     return data;
   }
 );

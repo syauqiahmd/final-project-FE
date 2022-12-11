@@ -9,7 +9,6 @@ export const fetchReports = createAsyncThunk(
         access_token: localStorage.getItem("access_token")
       }
     });
-    console.log(data, "<<<<<<<slices");
     return data;
   }
 );

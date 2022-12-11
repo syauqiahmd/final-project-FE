@@ -8,9 +8,11 @@ import { useEffect } from "react";
 import { fetchUser } from "../store/slices/user";
 
 const FavProject = () => {
-  const { projectByFavorite, loadingProjectByFavorite } = useSelector((state) => {
-    return state.project;
-  });
+  const { projectByFavorite, loadingProjectByFavorite } = useSelector(
+    (state) => {
+      return state.project;
+    }
+  );
   const { user } = useSelector((state) => {
     return state.user;
   });
@@ -18,15 +20,15 @@ const FavProject = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
-      dispatch(fetchUser(localStorage.access_token));
-      dispatch(
-        fetchProjectByFavorite({
-          userid: user.id,
-          access_token: localStorage.access_token,
-        })
-      );
+    dispatch(fetchUser(localStorage.access_token));
+    dispatch(
+      fetchProjectByFavorite({
+        userid: user.id,
+        access_token: localStorage.access_token,
+      })
+    );
   }, [dispatch, user.id]);
+
   return (
     <div className="project">
       <Helmet>
@@ -43,7 +45,7 @@ const FavProject = () => {
                 <div
                   className="col-lg-3 col-md-6 col-sm-6 col-12 mb-4"
                   key={idx}>
-                  <Card data={el.Project} favid={el.id}/>
+                  <Card data={el.Project} favid={el.id} userid={user.id}/>
                 </div>
               );
             })

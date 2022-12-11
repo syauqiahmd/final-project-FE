@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { instance } from "../bin/axios";
 import { toast } from "react-toastify";
 import ProgressBar from 'react-bootstrap/ProgressBar';
-
+import socket from "../bin/socketio";
 
 export default function Introduction(props) {
   const handlerFav = async () => {
@@ -22,13 +22,14 @@ export default function Introduction(props) {
 
   const handlerReport = async () => {
     try {
-      const { data } = await instance({
+      await instance({
         url: `/public/reports/${props.data.id}`,
         method: "post",
         headers: {
           access_token: localStorage.access_token,
         },
       });
+      socket.emit('fetch-report-toadmin')
       toast.success("report successful")
     } catch (err) {
       toast.error(err.response.data.message)

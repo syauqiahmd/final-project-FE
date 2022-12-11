@@ -3,6 +3,7 @@ import TableBodyReport from "../components/TableBodyReport";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchReports } from "../store/slices/report";
+import socket from "../bin/socketio";
 
 export default function Report() {
   const dispatch = useDispatch();
@@ -17,6 +18,9 @@ export default function Report() {
 
   useEffect(() => {
     dispatch(fetchReports());
+    socket.on("report-toadmin/response", ()=>{
+      dispatch(fetchReports());
+    })
   }, [dispatch]);
 
   return (
